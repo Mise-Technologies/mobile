@@ -15,7 +15,7 @@ class MenuButton extends StatelessWidget {
       onPressed: () {
         Navigator.push(
           context, 
-          MaterialPageRoute(builder: (context) => MenuItemScreen(this.category)));
+          MaterialPageRoute(builder: (context) => MenuItemScreen()));
       }
     );
   }

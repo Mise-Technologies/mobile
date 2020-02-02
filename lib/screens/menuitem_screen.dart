@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:moPass/components/menuitem_page.dart';
+import 'package:moPass/model/filter_data.dart';
+import 'package:provider/provider.dart';
 import 'package:moPass/components/filter_popout.dart';
 
 /// dart(TODO): Need to wire up state between filter widget and the list of menu item being rendered
 
 class MenuItemScreen extends StatelessWidget {
-
-  final tempTitle;
-
-  MenuItemScreen(this.tempTitle);
-
   @override
   Widget build(BuildContext context) {
-    return new ScrollableTabsDemo();
+    return ChangeNotifierProvider<FilterData>(
+      builder: (_) => FilterData(),
+      child: MenuItemScreenImpl()
+    );
   }
-
 }
-
 
 enum TabsDemoStyle {
   iconsAndText,
@@ -47,14 +46,14 @@ const List<_Page> _allPages = <_Page>[
   _Page(icon: Icons.cake, text: 'CAKE'),
 ];
 
-class ScrollableTabsDemo extends StatefulWidget {
+class MenuItemScreenImpl extends StatefulWidget {
   static const String routeName = '/material/scrollable-tabs';
 
   @override
-  ScrollableTabsDemoState createState() => ScrollableTabsDemoState();
+  _MenuItemScreenState createState() => _MenuItemScreenState();
 }
 
-class ScrollableTabsDemoState extends State<ScrollableTabsDemo> with SingleTickerProviderStateMixin {
+class _MenuItemScreenState extends State<MenuItemScreenImpl> with SingleTickerProviderStateMixin {
   TabController _controller;
   TabsDemoStyle _demoStyle = TabsDemoStyle.iconsAndText;
   bool _customIndicator = false;
@@ -135,7 +134,9 @@ class ScrollableTabsDemoState extends State<ScrollableTabsDemo> with SingleTicke
 
   @override
   Widget build(BuildContext context) {
-    final Color iconColor = Theme.of(context).accentColor;
+    print("Building...");
+    final FilterData filterData = Provider.of<FilterData>(context);
+    
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
@@ -186,16 +187,7 @@ class ScrollableTabsDemoState extends State<ScrollableTabsDemo> with SingleTicke
             child: Container(
               key: ObjectKey(page.icon),
               padding: const EdgeInsets.all(12.0),
-              child: Card(
-                child: Center(
-                  child: Icon(
-                    page.icon,
-                    color: iconColor,
-                    size: 128.0,
-                    semanticLabel: 'Placeholder for ${page.text} tab',
-                  ),
-                ),
-              ),
+              child: MenuItemPage()
             ),
           );
         }).toList(),
