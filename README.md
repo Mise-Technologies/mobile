@@ -1,19 +1,10 @@
 # Learn Flutters
 
-目录结构
-
 ```
 lib
-├── common                // Utils, Helpers..
-├── data                  // [domain layer]
-│   ├── mappers           // data mapper
-│   ├── models            // models
-│   ├── repositories
-│   └── usecases
-├── main.dart
-└── ui
-    ├── pages             // page level component
-    └── widgets           // basic widgets
+├── components            // Smaller widgets (blocks etc.)
+├── models                // Model (as the M in MVVM and perhaps DAO related ones)
+└── screens               // Basic screens of the app
 ```
 
 Refs:

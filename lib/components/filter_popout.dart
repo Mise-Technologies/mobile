@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:moPass/model/filter_data.dart';
+import 'package:moPass/models/filter_data.dart';
 import 'package:provider/provider.dart';
 
 class FilterPopout extends StatefulWidget {

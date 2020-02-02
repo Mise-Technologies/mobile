@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moPass/components/menuitem_page.dart';
-import 'package:moPass/model/filter_data.dart';
+import 'package:moPass/models/filter_data.dart';
 import 'package:provider/provider.dart';
 import 'package:moPass/components/filter_popout.dart';
 
