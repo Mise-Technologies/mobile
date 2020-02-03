@@ -4,16 +4,21 @@ import 'package:moPass/models/filter_data.dart';
 import 'package:provider/provider.dart';
 
 class FilterPopout extends StatefulWidget {
+  final _filterData;
 
-  FilterPopout() {
-    print("Here...");
-  }
+  FilterPopout(this._filterData);
 
   @override
-  _FilterPopoutState createState() => new _FilterPopoutState();
+  _FilterPopoutState createState() => new _FilterPopoutState(_filterData);
 }
 
 class _FilterPopoutState extends State<FilterPopout> {
+
+  /// dart(TODO): implement check boxes and FilterData functionality
+
+  FilterData _filterData;
+
+  _FilterPopoutState(this._filterData);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +27,7 @@ class _FilterPopoutState extends State<FilterPopout> {
       alignment: FractionalOffset.centerRight,
       child: Center(
         child: RaisedButton(onPressed: () {
-          filterData.toggle();
+          filterData.saveFilter();
           Navigator.pop(context);
         })
       ),

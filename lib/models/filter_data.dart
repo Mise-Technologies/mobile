@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class FilterData extends ChangeNotifier {
 
-  void toggle() {
+  void saveFilter() {
     notifyListeners();
   }
 }
