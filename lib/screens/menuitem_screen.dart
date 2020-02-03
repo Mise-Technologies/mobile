@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moPass/components/menuitem_page.dart';
+import 'package:moPass/data.dart';
 import 'package:moPass/models/filter_data.dart';
 import 'package:provider/provider.dart';
 import 'package:moPass/components/filter_popout.dart';
@@ -7,47 +8,23 @@ import 'package:moPass/components/filter_popout.dart';
 /// dart(TODO): Need to wire up state between filter widget and the list of menu item being rendered
 
 class MenuItemScreen extends StatelessWidget {
+  final category;
+
+  MenuItemScreen(this.category);
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<FilterData>(
       builder: (_) => FilterData(),
-      child: MenuItemScreenImpl()
+      child: MenuItemScreenImpl(category)
     );
   }
 }
 
-enum TabsDemoStyle {
-  iconsAndText,
-  iconsOnly,
-  textOnly
-}
-
-// The below will be replaced by MenuItem
-class _Page {
-  const _Page({ this.icon, this.text });
-  final IconData icon;
-  final String text;
-}
-
-const List<_Page> _allPages = <_Page>[
-  _Page(icon: Icons.grade, text: 'TRIUMPH'),
-  _Page(icon: Icons.playlist_add, text: 'NOTE'),
-  _Page(icon: Icons.check_circle, text: 'SUCCESS'),
-  _Page(icon: Icons.question_answer, text: 'OVERSTATE'),
-  _Page(icon: Icons.sentiment_very_satisfied, text: 'SATISFACTION'),
-  _Page(icon: Icons.camera, text: 'APERTURE'),
-  _Page(icon: Icons.assignment_late, text: 'WE MUST'),
-  _Page(icon: Icons.assignment_turned_in, text: 'WE CAN'),
-  _Page(icon: Icons.group, text: 'ALL'),
-  _Page(icon: Icons.block, text: 'EXCEPT'),
-  _Page(icon: Icons.sentiment_very_dissatisfied, text: 'CRYING'),
-  _Page(icon: Icons.error, text: 'MISTAKE'),
-  _Page(icon: Icons.loop, text: 'TRYING'),
-  _Page(icon: Icons.cake, text: 'CAKE'),
-];
-
 class MenuItemScreenImpl extends StatefulWidget {
-  static const String routeName = '/material/scrollable-tabs';
+  final category;
+
+  MenuItemScreenImpl(this.category);
 
   @override
   _MenuItemScreenState createState() => _MenuItemScreenState();
@@ -55,14 +32,16 @@ class MenuItemScreenImpl extends StatefulWidget {
 
 class _MenuItemScreenState extends State<MenuItemScreenImpl> with SingleTickerProviderStateMixin {
   TabController _controller;
-  TabsDemoStyle _demoStyle = TabsDemoStyle.iconsAndText;
-  bool _customIndicator = false;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _controller = TabController(vsync: this, length: _allPages.length);
+    _controller = TabController(
+      vsync: this, 
+      length: MENU_CATEGORIES.length,
+      initialIndex: MENU_CATEGORIES.indexOf(widget.category)
+    );
   }
 
   @override
@@ -71,85 +50,19 @@ class _MenuItemScreenState extends State<MenuItemScreenImpl> with SingleTickerPr
     super.dispose();
   }
 
-  void changeDemoStyle(TabsDemoStyle style) {
-    setState(() {
-      _demoStyle = style;
-    });
-  }
-
   Decoration getIndicator() {
-    if (!_customIndicator)
-      return const UnderlineTabIndicator();
-
-    switch(_demoStyle) {
-      case TabsDemoStyle.iconsAndText:
-        return ShapeDecoration(
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(4.0)),
-            side: BorderSide(
-              color: Colors.white24,
-              width: 2.0,
-            ),
-          ) + const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(4.0)),
-            side: BorderSide(
-              color: Colors.transparent,
-              width: 4.0,
-            ),
-          ),
-        );
-
-      case TabsDemoStyle.iconsOnly:
-        return ShapeDecoration(
-          shape: const CircleBorder(
-            side: BorderSide(
-              color: Colors.white24,
-              width: 4.0,
-            ),
-          ) + const CircleBorder(
-            side: BorderSide(
-              color: Colors.transparent,
-              width: 4.0,
-            ),
-          ),
-        );
-
-      case TabsDemoStyle.textOnly:
-        return ShapeDecoration(
-          shape: const StadiumBorder(
-            side: BorderSide(
-              color: Colors.white24,
-              width: 2.0,
-            ),
-          ) + const StadiumBorder(
-            side: BorderSide(
-              color: Colors.transparent,
-              width: 4.0,
-            ),
-          ),
-        );
-    }
-    return null;
+    return const UnderlineTabIndicator();
   }
 
   @override
   Widget build(BuildContext context) {
-    print("Building...");
-    final FilterData filterData = Provider.of<FilterData>(context);
+    // final FilterData filterData = Provider.of<FilterData>(context);
     
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
         title: const Text('Scrollable tabs'),
         actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.sentiment_very_satisfied),
-            onPressed: () {
-              setState(() {
-                _customIndicator = !_customIndicator;
-              });
-            },
-          ),
           IconButton(
             icon: const Icon(Icons.filter_list),
             onPressed: () {
@@ -161,18 +74,9 @@ class _MenuItemScreenState extends State<MenuItemScreenImpl> with SingleTickerPr
           controller: _controller,
           isScrollable: true,
           indicator: getIndicator(),
-          tabs: _allPages.map<Tab>((_Page page) {
-            assert(_demoStyle != null);
-            switch (_demoStyle) {
-              case TabsDemoStyle.iconsAndText:
-                return Tab(text: page.text, icon: Icon(page.icon));
-              case TabsDemoStyle.iconsOnly:
-                return Tab(icon: Icon(page.icon));
-              case TabsDemoStyle.textOnly:
-                return Tab(text: page.text);
-            }
-            return null;
-          }).toList(),
+          tabs: MENU_CATEGORIES.map<Tab>(
+            (String category) => Tab(text: category)
+          ).toList(),
         ),
       ),
       endDrawer: Drawer(
@@ -180,14 +84,13 @@ class _MenuItemScreenState extends State<MenuItemScreenImpl> with SingleTickerPr
       ),
       body: TabBarView(
         controller: _controller,
-        children: _allPages.map<Widget>((_Page page) {
+        children: MENU_CATEGORIES.map<Widget>((String category) {
           return SafeArea(
             top: false,
             bottom: false,
             child: Container(
-              key: ObjectKey(page.icon),
               padding: const EdgeInsets.all(12.0),
-              child: MenuItemPage()
+              child: MenuItemPage(DISHES_BY_CATEGORIES[category])
             ),
           );
         }).toList(),

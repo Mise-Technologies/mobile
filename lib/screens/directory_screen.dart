@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:moPass/components/menu_button.dart';
+import 'package:moPass/data.dart';
 
 class DirectoryScreen extends StatelessWidget {
-
-  final categories = [
-    'All Dishes',
-    'Appetizers',
-    'Salad'
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +11,8 @@ class DirectoryScreen extends StatelessWidget {
         title: const Text('LITTLE SISTER'),
       ),
       body: ListView(
-        children: List<Widget>.generate(categories.length, (int index) {
-          return new MenuButton(categories[index]);
+        children: List<Widget>.generate(MENU_CATEGORIES.length, (int index) {
+          return MenuButton(MENU_CATEGORIES[index]);
         })
       ),
     );
