@@ -18,6 +18,7 @@ class _MenuItemPageState extends State<MenuItemPage> {
       body: ListView.builder(
         itemCount: widget.dishes.length,
         itemBuilder: (context, i) {
+          // dart(TODO): here to filter out menu items
           return ExpansionTile(
             title: Text(DISHES[widget.dishes[i]].name, style: new TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic)),
             children: <Widget>[

@@ -5,8 +5,6 @@ import 'package:moPass/models/filter_data.dart';
 import 'package:provider/provider.dart';
 import 'package:moPass/components/filter_popout.dart';
 
-/// dart(TODO): Need to wire up state between filter widget and the list of menu item being rendered
-
 class MenuItemScreen extends StatelessWidget {
   final category;
 
@@ -56,7 +54,7 @@ class _MenuItemScreenState extends State<MenuItemScreenImpl> with SingleTickerPr
 
   @override
   Widget build(BuildContext context) {
-    // final FilterData filterData = Provider.of<FilterData>(context);
+    final FilterData filterData = Provider.of<FilterData>(context);
     
     return Scaffold(
       key: _scaffoldKey,
@@ -80,7 +78,7 @@ class _MenuItemScreenState extends State<MenuItemScreenImpl> with SingleTickerPr
         ),
       ),
       endDrawer: Drawer(
-        child: FilterPopout()
+        child: FilterPopout(filterData)
       ),
       body: TabBarView(
         controller: _controller,
