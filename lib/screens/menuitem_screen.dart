@@ -78,7 +78,7 @@ class _MenuItemScreenState extends State<MenuItemScreenImpl> with SingleTickerPr
         ),
       ),
       endDrawer: Drawer(
-        child: FilterPopout(filterData)
+        child: FilterPopout()
       ),
       body: TabBarView(
         controller: _controller,

@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 const MENU_CATEGORIES = [
   'All Dishes',
   'Appetizers',
@@ -33,4 +35,14 @@ const Map<String, List<String>> DISHES_BY_CATEGORIES = {
     '\‘goi du du\’ green papaya salad',
     'chili salted baby octopus'
   ]
+};
+
+
+const Map<String, Set<String>> ALLERGENTS = {
+  'Sesame': {
+    'Sesame Sourdough Baguette'
+  },
+  'Spicy': {
+    'chili salted baby octopus'
+  },
 };
