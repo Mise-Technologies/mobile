@@ -1,5 +1,3 @@
-import 'dart:collection';
-
 const MENU_CATEGORIES = [
   'All Dishes',
   'Appetizers',
