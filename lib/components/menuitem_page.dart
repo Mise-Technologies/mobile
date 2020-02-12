@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:moPass/data.dart';
 
 class MenuItemPage extends StatefulWidget {
-  final List<String> dishes;
+  final List<Dish> dishes;
 
   MenuItemPage(this.dishes);
 
@@ -18,12 +18,11 @@ class _MenuItemPageState extends State<MenuItemPage> {
       body: ListView.builder(
         itemCount: widget.dishes.length,
         itemBuilder: (context, i) {
-          // dart(TODO): here to filter out menu items
           return ExpansionTile(
-            title: Text(DISHES[widget.dishes[i]].name, style: new TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic)),
+            title: Text(widget.dishes[i].name, style: new TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic)),
             children: <Widget>[
               Column(
-                children: _buildExpandableContent(DISHES[widget.dishes[i]]),
+                children: _buildExpandableContent(widget.dishes[i]),
               ),
             ],
           );
