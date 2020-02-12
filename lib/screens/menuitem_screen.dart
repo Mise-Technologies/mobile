@@ -78,17 +78,23 @@ class _MenuItemScreenState extends State<MenuItemScreenImpl> with SingleTickerPr
         ),
       ),
       endDrawer: Drawer(
-        child: FilterPopout(filterData)
+        child: FilterPopout()
       ),
       body: TabBarView(
         controller: _controller,
         children: MENU_CATEGORIES.map<Widget>((String category) {
+          List<Dish> dishes = [];
+          for (String dish in DISHES_BY_CATEGORIES[category]) {
+            if (!filterData.excluded.contains(dish)) {
+              dishes.add(DISHES[dish]);
+            }
+          }
           return SafeArea(
             top: false,
             bottom: false,
             child: Container(
               padding: const EdgeInsets.all(12.0),
-              child: MenuItemPage(DISHES_BY_CATEGORIES[category])
+              child: MenuItemPage(dishes)
             ),
           );
         }).toList(),

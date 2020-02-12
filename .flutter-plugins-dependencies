@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 {"_info":"// This is a generated file; do not edit or check into version control.","dependencyGraph":[{"name":"camera","dependencies":[]},{"name":"path_provider","dependencies":[]}]}
+=======
+{"info":"This is a generated file; do not edit or check into version control.","plugins":{"ios":[{"name":"camera","path":"/Users/TonyLyu/.pub-cache/hosted/pub.dartlang.org/camera-0.5.7+3/","dependencies":[]},{"name":"path_provider","path":"/Users/TonyLyu/.pub-cache/hosted/pub.dartlang.org/path_provider-1.5.1/","dependencies":[]}],"android":[{"name":"camera","path":"/Users/TonyLyu/.pub-cache/hosted/pub.dartlang.org/camera-0.5.7+3/","dependencies":[]},{"name":"path_provider","path":"/Users/TonyLyu/.pub-cache/hosted/pub.dartlang.org/path_provider-1.5.1/","dependencies":[]}],"macos":[],"linux":[],"windows":[],"web":[]},"dependencyGraph":[{"name":"camera","dependencies":[]},{"name":"path_provider","dependencies":[]}],"date_created":"2020-02-05 15:55:35.355435","version":"1.14.7-pre.18"}
+>>>>>>> b925a5f595d4a5e928ae078d26e5540843b02e65

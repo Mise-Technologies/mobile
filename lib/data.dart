@@ -34,3 +34,13 @@ const Map<String, List<String>> DISHES_BY_CATEGORIES = {
     'chili salted baby octopus'
   ]
 };
+
+
+const Map<String, Set<String>> ALLERGENTS = {
+  'Sesame': {
+    'Sesame Sourdough Baguette'
+  },
+  'Spicy': {
+    'chili salted baby octopus'
+  },
+};
