@@ -20,7 +20,7 @@ class _MenuItemPageState extends State<MenuItemPage> {
         itemBuilder: (context, i) {
           // dart(TODO): here to filter out menu items
           return ExpansionTile(
-            title: Text(DISHES[widget.dishes[i]].name, style: new TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic)),
+            title: Text(DISHES[widget.dishes[i]].name, style: new TextStyle(fontSize: 18.0, color: Colors.white)),
             children: <Widget>[
               Column(
                 children: _buildExpandableContent(DISHES[widget.dishes[i]]),
@@ -37,7 +37,7 @@ class _MenuItemPageState extends State<MenuItemPage> {
 
     columnContent.add(
       ListTile(
-        title: Text(dish.description, style: TextStyle(fontSize: 18.0))
+        title: Text(dish.description, style: TextStyle(fontSize: 18.0, color: Colors.white.withOpacity(0.6)))
       )
     );
 

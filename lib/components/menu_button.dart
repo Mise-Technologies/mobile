@@ -10,14 +10,21 @@ class MenuButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Maybe it should be just SizedBox?
-    return RaisedButton(
-      child: Text(this.category),
-      onPressed: () {
-        Navigator.push(
-          context, 
-          MaterialPageRoute(builder: (context) => MenuItemScreen(this.category))
-        );
-      }
+    return SizedBox(
+      height: 69.0,
+      child: RaisedButton(
+        shape: RoundedRectangleBorder(
+           borderRadius: new BorderRadius.circular(10.0),
+        ),
+        color: Theme.of(context).accentColor,
+        child: Text(this.category, style: TextStyle(fontSize: 18.0, color: Colors.white)),
+        onPressed: () {
+          Navigator.push(
+            context, 
+            MaterialPageRoute(builder: (context) => MenuItemScreen(this.category))
+          );
+        }
+      )
     );
   }
   
