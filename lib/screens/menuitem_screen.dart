@@ -4,6 +4,7 @@ import 'package:moPass/data.dart';
 import 'package:moPass/models/filter_data.dart';
 import 'package:provider/provider.dart';
 import 'package:moPass/components/filter_popout.dart';
+import 'package:moPass/models/dish.dart';
 
 class MenuItemScreen extends StatelessWidget {
   final category;
