@@ -59,9 +59,13 @@ class _MenuItemScreenState extends State<MenuItemScreenImpl> with SingleTickerPr
     
     return Scaffold(
       key: _scaffoldKey,
-      appBar: AppBar(
-        title: const Text('Scrollable tabs'),
-        actions: <Widget>[
+      appBar: AppBar( 
+        leading: new IconButton(
+          icon: Image(image: AssetImage('assets/icons/arrow_left.png')),
+          onPressed: () => Navigator.of(context).pop(),
+        ), 
+        backgroundColor: Theme.of(context).accentColor,
+        actions: <Widget>[ 
           IconButton(
             icon: const Icon(Icons.filter_list),
             onPressed: () {
@@ -69,7 +73,7 @@ class _MenuItemScreenState extends State<MenuItemScreenImpl> with SingleTickerPr
             }
           )
         ],
-        bottom: TabBar(
+        bottom: TabBar( //scrollable tabs
           controller: _controller,
           isScrollable: true,
           indicator: getIndicator(),
@@ -81,25 +85,22 @@ class _MenuItemScreenState extends State<MenuItemScreenImpl> with SingleTickerPr
       endDrawer: Drawer(
         child: FilterPopout()
       ),
-      body: TabBarView(
-        controller: _controller,
-        children: MENU_CATEGORIES.map<Widget>((String category) {
-          List<Dish> dishes = [];
-          for (String dish in DISHES_BY_CATEGORIES[category]) {
-            if (!filterData.excluded.contains(dish)) {
-              dishes.add(DISHES[dish]);
+      body: Container(
+        margin: const EdgeInsets.only(top: 23.0, left: 15.0, right: 15.0),
+        child: TabBarView(
+          controller: _controller,
+          children: MENU_CATEGORIES.map<Widget>((String category) {
+            List<Dish> dishes = [];
+            for (String dish in DISHES_BY_CATEGORIES[category]) {
+              if (!filterData.excluded.contains(dish)) {
+                dishes.add(DISHES[dish]);
+              }
             }
-          }
-          return SafeArea(
-            top: false,
-            bottom: false,
-            child: Container(
-              padding: const EdgeInsets.all(12.0),
-              child: MenuItemPage(dishes)
-            ),
-          );
-        }).toList(),
-      ),
+            return MenuItemPage(dishes);  
+          }).toList(),
+          
+        ),
+      )
     );
   }
 }
