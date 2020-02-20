@@ -44,7 +44,7 @@ class FilterData extends ChangeNotifier {
 
     // set all filters to false
     for (String item in ALLERGENTS.keys) {
-      _filters[item] = false;
+      setItem(item, false);
     }
     notifyListeners();
   }
