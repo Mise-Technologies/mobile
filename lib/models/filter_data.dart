@@ -38,4 +38,14 @@ class FilterData extends ChangeNotifier {
     }
     notifyListeners();
   }
+
+  void clearFilter() {
+    _excludedItems.clear();
+
+    // set all filters to false
+    for (String item in ALLERGENTS.keys) {
+      _filters[item] = false;
+    }
+    notifyListeners();
+  }
 }

@@ -37,6 +37,15 @@ class _FilterPopoutState extends State<FilterPopout> {
         child: Text('Save Filter'),
       )
     );
+    list.add(
+      RaisedButton(
+        onPressed: () {
+          Navigator.pop(context);
+          filterData.clearFilter();
+        },
+        child: Text('Clear Filter'),
+      )
+    );
     return Align(
       alignment: FractionalOffset.centerRight,
       child: Center(
