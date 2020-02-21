@@ -12,24 +12,7 @@ class MenuButton extends StatelessWidget {
     // Maybe it should be just SizedBox?
     return SizedBox(
       height: 69.0,
-      child: 
-      /*
-          RaisedButton.icon(
-            icon: Image(image: AssetImage('assets/icons/arrow_right.png')),
-            color: Theme.of(context).accentColor,
-            label: Align(
-              child: Text(this.category, style: TextStyle(fontSize: 18.0, color: Colors.white))
-            ),
-            onPressed: () {
-              Navigator.push(
-                context, 
-                MaterialPageRoute(builder: (context) => MenuItemScreen(this.category))
-              );
-            }
-          )
-          */
-      
-      RaisedButton(
+      child: RaisedButton(
         shape: RoundedRectangleBorder(
            borderRadius: new BorderRadius.circular(10.0),
         ),
