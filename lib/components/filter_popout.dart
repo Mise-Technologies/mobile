@@ -21,11 +21,11 @@ class _FilterPopoutState extends State<FilterPopout> {
   @override
   Widget build(BuildContext context) {
     final filterData = Provider.of<FilterData>(context);
-    var list = ALLERGENTS.keys.map<Widget>((String allergent) {
+    var list = ALLERGENS.keys.map<Widget>((String allergen) {
       return CheckboxListTile(
-        title: Text(allergent),
-        onChanged: _boxToggled(filterData, allergent),
-        value: filterData.getItem(allergent),
+        title: Text(allergen),
+        onChanged: _boxToggled(filterData, allergen),
+        value: filterData.getItem(allergen),
       );
     }).toList();
     list.add(
@@ -35,15 +35,6 @@ class _FilterPopoutState extends State<FilterPopout> {
           filterData.saveFilter();
         },
         child: Text('Save Filter'),
-      )
-    );
-    list.add(
-      RaisedButton(
-        onPressed: () {
-          Navigator.pop(context);
-          filterData.clearFilter();
-        },
-        child: Text('Clear Filter'),
       )
     );
     return Align(

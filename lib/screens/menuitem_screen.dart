@@ -98,9 +98,16 @@ class _MenuItemScreenState extends State<MenuItemScreenImpl> with SingleTickerPr
             }
             return MenuItemPage(dishes);  
           }).toList(),
-          
         ),
-      )
+      ),
+      floatingActionButton: new Visibility(
+        visible: filterData.excluded.isNotEmpty,
+        child: FloatingActionButton(
+          onPressed: filterData.clearFilter,
+          child: Icon(Icons.clear)
+        )
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }
