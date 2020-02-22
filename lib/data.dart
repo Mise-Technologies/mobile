@@ -1,11 +1,11 @@
 import 'package:moPass/models/dish.dart';
 
 const MENU_CATEGORIES = [
-  'All Dishes',
-  'SWEET',
+  //'All Dishes',
   'COLD',
-  'GRILLED PIZZA',
   'HOT',
+  'GRILLED PIZZA',
+  'SWEET',
 ];
 
 const Map<String, Dish> DISHES = {
@@ -59,7 +59,8 @@ const Map<String, Dish> DISHES = {
 };
 
 const Map<String, List<String>> DISHES_BY_CATEGORIES = {
-  'All Dishes': [
+
+/*  'All Dishes': [
     'double chocolate cake',
     'bread pudding',
     'cardamom chocolate ganache',
@@ -108,6 +109,7 @@ const Map<String, List<String>> DISHES_BY_CATEGORIES = {
     'bacon wrapped medjool dates',
     'wild mushroom polenta',
   ],
+  */
   'SWEET': [
     'double chocolate cake',
     'bread pudding',
@@ -216,7 +218,7 @@ const Map<String, Set<String>> ALLERGENTS = {
     'pistachio lamb kebab',
     'malabi',
   },
-  'Gluten-Free Possible': {
+  /*'Gluten-Free Possible': {
     'oaxacan pasta',
     'feta filo',
     'shawarma tacos',
@@ -237,7 +239,7 @@ const Map<String, Set<String>> ALLERGENTS = {
     'bacon & double cream brie',
     'bread pudding',
     'cardamom chocolate ganache',
-  },
+  },*/
   'Dairy': {
     'burrata caprese',
     'rainbow beet salad',
@@ -264,7 +266,7 @@ const Map<String, Set<String>> ALLERGENTS = {
   },
   'Pecan': {
     'stuffed mushroom',
-  },
+  },/*
   'Vegan Possible': {
     'shrimp ceviche',
     'poached shrimp',
@@ -306,6 +308,6 @@ const Map<String, Set<String>> ALLERGENTS = {
     'malabi',
     'bacari ice cream',
     'the best cake you\'ve ever had',
-  },
+  },*/
 };
 

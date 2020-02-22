@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 
 class FilterAppBar extends StatelessWidget {
 
-  @override //Will make a real search bar later
+  @override 
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[800],
-      body: Container(
+      /* Hiding search filter for now 
+        body: Container(
         margin: const EdgeInsets.only(top: 150.0, left: 17.0),
           child: SizedBox(
             height: 36.0,
@@ -34,7 +35,8 @@ class FilterAppBar extends StatelessWidget {
                   ]
           ),
             )
-     )));
+     ))
+     */);
   }
   //can remove later
   void _startSearch() {
