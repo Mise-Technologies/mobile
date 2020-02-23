@@ -8,6 +8,15 @@ class FilterData extends ChangeNotifier {
   Set<String> _excludedItems = HashSet<String>();
 
   Set<String> get excluded => _excludedItems;
+  int get checkedItemCount {
+    int count = 0;
+    for (bool checked in _filters.values) {
+      if (checked) {
+        ++count;
+      }
+    }
+    return count;
+  }
 
   FilterData() {
     for (String item in ALLERGENS.keys) {

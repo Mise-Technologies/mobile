@@ -56,6 +56,8 @@ class _MenuItemScreenState extends State<MenuItemScreenImpl> with SingleTickerPr
   @override
   Widget build(BuildContext context) {
     final FilterData filterData = Provider.of<FilterData>(context);
+    // final hiddenCount = filterData.excluded.length;
+    final hiddenCount = filterData.checkedItemCount;
     
     return Scaffold(
       key: _scaffoldKey,
@@ -86,7 +88,7 @@ class _MenuItemScreenState extends State<MenuItemScreenImpl> with SingleTickerPr
         child: FilterPopout()
       ),
       body: Container(
-        margin: const EdgeInsets.only(top: 23.0, left: 15.0, right: 15.0),
+        margin: EdgeInsets.only(top: 23.0, left: 15.0, right: 15.0),
         child: TabBarView(
           controller: _controller,
           children: MENU_CATEGORIES.map<Widget>((String category) {
@@ -102,12 +104,35 @@ class _MenuItemScreenState extends State<MenuItemScreenImpl> with SingleTickerPr
       ),
       floatingActionButton: new Visibility(
         visible: filterData.excluded.isNotEmpty,
-        child: FloatingActionButton(
-          onPressed: filterData.clearFilter,
-          child: Icon(Icons.clear)
+        child: Container(
+          padding: EdgeInsets.only(bottom: 25.0),
+          child: RawMaterialButton(
+            fillColor: Color.fromRGBO(255, 255, 255, 0.25),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)),
+            onPressed: filterData.clearFilter,
+            child: SizedBox(
+              height: 100.0,
+              width: 240.0,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisSize: MainAxisSize.max,
+                children: <Widget>[
+                  Text(hiddenCount < 2 ? '1 Item Is Hidden': '$hiddenCount Items Are Hidden', 
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      color: Color.fromRGBO(255, 255, 255, 0.5)
+                  )),
+                  Text('Clear Filters', style: TextStyle(
+                    fontSize: 18.0,
+                    color: Colors.white
+                  )),
+                ]
+              ),
+            )
+          )
         )
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }

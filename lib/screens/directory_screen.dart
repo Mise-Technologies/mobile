@@ -17,7 +17,7 @@ class DirectoryScreen extends StatelessWidget {
         child: ListView(
           children: List<Widget>.generate(MENU_CATEGORIES.length, (int index) {
             return Container(
-              margin: const EdgeInsets.only(bottom: 20.0),
+              margin: EdgeInsets.only(bottom: 20.0),
               child: MenuButton(MENU_CATEGORIES[index]));
           })
       ))
