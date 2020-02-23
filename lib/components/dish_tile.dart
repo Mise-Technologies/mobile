@@ -63,14 +63,28 @@ class _AllergenIconBar extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Image> allergenIcons = [];
     for (String allergen in _allergens) {
-      AssetImage img;
-      if (allergen == 'Gluten') {
-        img = AssetImage('assets/icons/allergens/Wheat.png');
-      } else if (allergen == 'Sesame') {
-        img = AssetImage('assets/icons/allergens/Sesame.png');
+      String pref = 'assets/icons/allergens/';
+      String path;
+      switch (allergen) {
+      case 'Walnut':
+      case 'Almond':
+      case 'Pistachio':
+      case 'Pecan':
+      case 'Hazelnut':
+        path = pref + 'Treenut.png'; break;
+      case 'Gluten':
+        path = pref + 'Wheat.png'; break;
+      case 'Sesame':
+        path = pref + 'Sesame.png'; break;
+      case 'Dairy':
+        path = pref + 'Milk.png'; break;
+      case 'Peanut':
+        path = pref + 'Treenut.png'; break;
+      default:
+        break;
       }
-      if (img != null) {
-        allergenIcons.add(Image(image: img));
+      if (path != null) {
+        allergenIcons.add(Image(image: AssetImage(path)));
       }
     }
     return Container(
