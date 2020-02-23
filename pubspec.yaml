@@ -46,6 +46,10 @@ flutter:
     - assets/icons/expand_arrow_more.png
     - assets/icons/allergens/Wheat.png
     - assets/icons/allergens/Sesame.png
+    - assets/icons/allergens/Treenut.png
+    - assets/icons/allergens/Milk.png
+    - assets/icons/allergens/Peanut.png
+
   fonts:
   - family: HKGrotesk
     fonts:
