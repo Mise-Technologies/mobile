@@ -44,6 +44,8 @@ flutter:
     - assets/icons/arrow_left.png
     - assets/icons/expand_arrow_less.png
     - assets/icons/expand_arrow_more.png
+    - assets/icons/allergens/Wheat.png
+    - assets/icons/allergens/Sesame.png
   fonts:
   - family: HKGrotesk
     fonts:
