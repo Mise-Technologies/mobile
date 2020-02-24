@@ -22,14 +22,14 @@ class _FilterPopoutState extends State<FilterPopout> {
   @override
   Widget build(BuildContext context) {
     final filterData = Provider.of<FilterData>(context);
-    var list = ALLERGENTS.keys.map<Widget>((String allergent) {
+    var list = ALLERGENS.keys.map<Widget>((String allergen) {
       return Theme(
         data: Theme.of(context).copyWith(unselectedWidgetColor: Colors.grey),
         child: CheckboxListTile(
 
-        title: Text(allergent, style: TextStyle(fontSize: 18.0, color: Colors.white)),
-        onChanged: _boxToggled(filterData, allergent),
-        value: filterData.getItem(allergent),
+        title: Text(allergen, style: TextStyle(fontSize: 18.0, color: Colors.white)),
+        onChanged: _boxToggled(filterData, allergen),
+        value: filterData.getItem(allergen),
         controlAffinity: ListTileControlAffinity.leading,
         checkColor: Colors.grey[800],
         activeColor: Colors.white,
