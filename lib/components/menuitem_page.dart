@@ -23,7 +23,10 @@ class _MenuItemPageState extends State<MenuItemPage> {
             margin: EdgeInsets.only(bottom: 20.0),
             child: ExpansionTile(
               trailing: Image(image: AssetImage('assets/icons/expand_arrow_more.png')),
-              title: Text(widget.dishes[i].name, style: new TextStyle(fontSize: 20.0, color: Colors.white)),
+              title: Row(
+                children: <Widget>[
+                  Expanded(child: Text(widget.dishes[i].name, style: new TextStyle(fontSize: 20.0, color: Colors.white))),
+                ]),
               children: <Widget>[
                 Column(
                   children: _buildExpandableContent(widget.dishes[i]),
