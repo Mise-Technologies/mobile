@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:moPass/components/directory_app_bar.dart';
 import 'package:moPass/components/menu_button.dart';
-import 'package:moPass/components/custom_app_bar.dart';
 import 'package:moPass/data.dart';
 
 class DirectoryScreen extends StatelessWidget {
@@ -10,7 +10,7 @@ class DirectoryScreen extends StatelessWidget {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(128.0),
-        child: CustomAppBar(),
+        child: DirectoryAppBar(),
         ),
       body: Container(
         margin: const EdgeInsets.only(right: 25.0, left:25.0),

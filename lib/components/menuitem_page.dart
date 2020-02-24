@@ -19,7 +19,26 @@ class _MenuItemPageState extends State<MenuItemPage> {
       body: ListView.builder(
         itemCount: widget.dishes.length,
         itemBuilder: (context, i) {
+<<<<<<< HEAD
           return DishTile(widget.dishes[i]);
+=======
+          return Container(
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0),  color: Theme.of(context).accentColor),
+            margin: EdgeInsets.only(bottom: 20.0),
+            child: ExpansionTile(
+              trailing: Image(image: AssetImage('assets/icons/expand_arrow_more.png')),
+              title: Row(
+                children: <Widget>[
+                  Expanded(child: Text(widget.dishes[i].name, style: new TextStyle(fontSize: 20.0, color: Colors.white))),
+                ]),
+              children: <Widget>[
+                Column(
+                  children: _buildExpandableContent(widget.dishes[i]),
+                ),
+              ],
+              )
+          );
+>>>>>>> styling_branch
         },
         padding: EdgeInsets.only(bottom: kFloatingActionButtonMargin + 150)
       ),
