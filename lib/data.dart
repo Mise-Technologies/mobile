@@ -167,7 +167,7 @@ const Map<String, List<String>> DISHES_BY_CATEGORIES = {
   ],
 };
 
-const Map<String, Set<String>> ALLERGENTS = {
+const Map<String, Set<String>> ALLERGENS = {
   'Gluten': {
     'asian pear salad',
     'shrimp ceviche',
