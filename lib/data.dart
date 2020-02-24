@@ -1,65 +1,356 @@
 import 'package:moPass/models/dish.dart';
 
 const MENU_CATEGORIES = [
-  'All Dishes',
-  'SWEET',
+  //'All Dishes',
   'COLD',
-  'GRILLED PIZZA',
   'HOT',
+  'GRILLED PIZZA',
+  'SWEET',
 ];
 
 const Map<String, Dish> DISHES = {
-  'double chocolate cake': Dish('double chocolate cake', 'chocolate pudding, hazelnut brittle'),
-  'bread pudding': Dish('bread pudding', 'clover honey custard, vanilla bean ice cream'),
-  'cardamom chocolate ganache': Dish('cardamom chocolate ganache', 'brown butter cookie dough, banana brulee, candied walnut, chantilly cream'),
-  'malabi': Dish('malabi', 'rosewater custard, shaved coconut, hibiscus flower syrup, candied pistachio'),
-  'bacari ice cream': Dish('bacari ice cream', 'vanilla bean, walnut, clover honey'),
-  'the best cake you\'ve ever had': Dish('the best cake you\'ve ever had', 'medjool dates, brown sugar caramel, crispy bacon'),
-  'asian pear salad': Dish('asian pear salad', 'grilled shiitake mushroom, wild arugula, hard boiled egg, winter citrus vinaigrette'),
-  'shrimp ceviche': Dish('shrimp ceviche', 'fennel aguachile, heirloom cherry tomato, cucumber, za\'atar, sumac, lime chili chips'),
-  'poached shrimp': Dish('poached shrimp', 'citrus chili sauce, shaved radish, parsley, basil'),
-  'burrata caprese': Dish('burrata caprese', 'burrata di gioia, fresh basil, heirloom cherry tomato, basil walnut pesto, grey salt'),
-  'rainbow beet salad': Dish('rainbow beet salad', 'oven roasted beets, chèvre, tarragon, frantoia olive oil, black peppercorn, grey salt'),
-  'bruschetta with tomato & basil': Dish('bruschetta with tomato & basil', 'local heirloom tomato & basil'),
-  'bruschetta with eggplant': Dish('bruschetta with eggplant', 'roasted market eggplant salad & persian cucumber'),
-  'bruschetta with bell pepper': Dish('bruschetta with bell pepper', 'dalia\'s open fire roasted bell peppers'),
-  'bruschetta with basil walnut pesto': Dish('bruschetta with basil walnut pesto', 'balsamic roasted garlic with basil walnut pesto'),
-  'tuscan kale salad': Dish('tuscan kale salad', 'crispy black kale & chopped rainbow kale, persian cucumber, heirloom cherry tomato, green onion, crumbled feta, za\'atar, sumac, kale tahini'),
-  'asian pear & brie': Dish('asian pear & brie', 'guava fromage blanc, wild arugula, grey salt, frantoia olive oil'),
-  'chorizo': Dish('chorizo', 'tomatillo salsa, queso fresco'),
-  'margherita': Dish('margherita', 'organiz tomato sauce, mozzarella di gioia, fresh basil, olive oil'),
-  'smoked mushroom': Dish('smoked mushroom', 'fromage blanc, 2yr white cheddar, parsley'),
-  'white': Dish('white', 'fromage blanc, bacon, scallion, mozzarella'),
-  'bacon & double cream brie': Dish('bacon & double cream brie', 'organic tomato sauce, fresh jalapeño'),
-  'fried chicken slider': Dish('fried chicken slider', 'cornbread crusted, hawaiian roll, pickled cucumber, cabbage, lemon kalamata olive caper aioli'),
-  'frog legs': Dish('frog legs', 'coconut crusted, roasted garlic cauliflower puree, gremolata'),
-  'oaxacan pasta': Dish('oaxacan pasta', 'handmade pasta, oaxacan cream, romesco, toasted almond, cilantro'),
-  'sea bass balik': Dish('sea bass balik', 'pan seared, charred shishito pepper & black beans, tarragon aioli, pomegranate molasses, grilled lemon'),
-  'feta filo': Dish('feta filo', 'clover honey, toasted sesame, black caraway, flaxseed'),
-  'shawarma tacos': Dish('shawarma tacos', 'mary\'s air chilled chicken, israeli spice mix, cabbage, pickled red onion, lemon garlic tahini'),
-  'pistachio lamb kebab': Dish('pistachio lamb kebab', 'kale, turmeric, and beet tahini; cucumber, heirloom cherry tomato'),
-  'stuffed mushroom': Dish('stuffed mushroom', 'five cheese blend, toasted pecan, basil walnut pesto, parmesan, parsley'),
-  'chipotle chicken wings': Dish('chipotle chicken wings', 'buttermilk batter, smoked pepper sauce, blue cheese creme fraiche, scallion'),
-  'oven roasted bone marrow': Dish('oven roasted bone marrow', 'caper panko, sea salt, black pepper, crostini'),
-  'bacari fries': Dish('bacari fries', 'chef\'s "bcn" sauce, fried egg'),
-  'ricotta & beet gnocchi': Dish('ricotta & beet gnocchi', 'hand-made, chèvre fondue, chimichurri'),
-  'gorgonzola pasta': Dish('gorgonzola pasta', 'gorgonzola dulcelatte cream sauce, hand-made tripoline, zucchini, calabrese pepper, crushes pistachio'),
-  'lamb stuffed eggplant': Dish('lamb stuffed eggplant', 'seasoned ground leg of lamb, lemon garlic emulsion, lemon chip, scallion'),
-  'noa\'s cauliflower': Dish('noa\'s cauliflower', 'caramelized, chipotle sauce, mixed greens'),
-  'seared scallops': Dish('seared scallops', 'carrot parsnip puree, melted leeks, crispy capers, white truffle oil'),
-  'grilled chicken breast': Dish('grilled chicken breast', 'mary\'s air chilled chicken, crispy parmesan risotto cake, lemon jalapeño caper sauce'),
-  'bacari burger': Dish('bacari burger', 'all natural beef, open faced, fresh tomato, carmelized onion, worcestershire aioli, telera roll'),
-  'chef\'s salmon': Dish('chef\'s salmon', 'crispy skin, walnut crust, garlic herb bulgar, parsley'),
-  'hunter\'s mac & cheese': Dish('hunter\'s mac & cheese', '5 cheese fondue, toasted panko, white truffle oil, scallion'),
-  'brussels sprouts': Dish('brussels sprouts', 'caramelized, pomegranate molasses, creme fraiche, pomegranate seeds'),
-  'seared petit filet': Dish('seared petit filet', 'grilled zucchini, house-made bernaise'),
-  'glazed pork belly': Dish('glazed pork belly', 'sweet umami mulling glaze, toasted sesame seed, lemon, scallion, cilantro'),
-  'bacon wrapped medjool dates': Dish('bacon wrapped medjool dates', 'parmagiano-reggiano stuffed'),
-  'wild mushroom polenta': Dish('wild mushroom polenta', 'chanterelle, wood ear, shiitake, cremini, scallion, cucumber'),
+  'double chocolate cake': Dish(
+    'double chocolate cake',
+    'chocolate pudding, hazelnut brittle',
+    [
+      'Hazelnut',
+    ],
+  ),
+  'bread pudding': Dish(
+    'bread pudding',
+    'clover honey custard, vanilla bean ice cream',
+    [
+      'Dairy',
+      'Gluten',
+    ],
+  ),
+  'cardamom chocolate ganache': Dish(
+    'cardamom chocolate ganache',
+    'brown butter cookie dough, banana brulee, candied walnut, chantilly cream',
+    [
+      'Dairy',
+      'Gluten',
+      'Walnut',
+    ],
+  ),
+  'malabi': Dish(
+    'malabi',
+    'rosewater custard, shaved coconut, hibiscus flower syrup, candied pistachio',
+    [
+      'Dairy',
+      'Pistachio',
+    ],
+  ),
+  'bacari ice cream': Dish(
+    'bacari ice cream',
+    'vanilla bean, walnut, clover honey',
+    [
+      'Dairy',
+      'Walnut',
+    ],
+  ),
+  'the best cake you\'ve ever had': Dish(
+    'the best cake you\'ve ever had',
+    'medjool dates, brown sugar caramel, crispy bacon',
+    [
+      'Gluten',
+    ],
+  ),
+  'asian pear salad': Dish(
+    'asian pear salad',
+    'grilled shiitake mushroom, wild arugula, hard boiled egg, winter citrus vinaigrette',
+    [
+      'Gluten',
+    ],
+  ),
+  'shrimp ceviche': Dish(
+    'shrimp ceviche',
+    'fennel aguachile, heirloom cherry tomato, cucumber, za\'atar, sumac, lime chili chips',
+    [
+      'Gluten',
+    ],
+  ),
+  'poached shrimp': Dish(
+    'poached shrimp',
+    'citrus chili sauce, shaved radish, parsley, basil',
+    [
+      'Gluten',
+    ],
+  ),
+  'burrata caprese': Dish(
+    'burrata caprese',
+    'burrata di gioia, fresh basil, heirloom cherry tomato, basil walnut pesto, grey salt',
+    [
+      'Gluten',
+      'Dairy',
+      'Walnut',
+    ],
+  ),
+  'rainbow beet salad': Dish(
+    'rainbow beet salad',
+    'oven roasted beets, chèvre, tarragon, frantoia olive oil, black peppercorn, grey salt',
+    [
+      'Dairy',
+    ],
+  ),
+  'bruschetta with tomato & basil': Dish(
+    'bruschetta with tomato & basil',
+    'local heirloom tomato & basil',
+    [
+      'Gluten',
+    ],
+  ),
+  'bruschetta with eggplant': Dish(
+    'bruschetta with eggplant',
+    'roasted market eggplant salad & persian cucumber',
+    [
+      'Gluten',
+    ],
+  ),
+  'bruschetta with bell pepper': Dish(
+    'bruschetta with bell pepper',
+    'dalia\'s open fire roasted bell peppers',
+    [
+      'Gluten',
+    ],
+  ),
+  'bruschetta with basil walnut pesto': Dish(
+    'bruschetta with basil walnut pesto',
+    'balsamic roasted garlic with basil walnut pesto',
+    [
+      'Gluten',
+      'Walnut',
+    ],
+  ),
+  'tuscan kale salad': Dish(
+    'tuscan kale salad',
+    'crispy black kale & chopped rainbow kale, persian cucumber, heirloom cherry tomato, green onion, crumbled feta, za\'atar, sumac, kale tahini',
+    [
+      'Dairy',
+    ],
+  ),
+  'asian pear & brie': Dish(
+    'asian pear & brie',
+    'guava fromage blanc, wild arugula, grey salt, frantoia olive oil',
+    [
+      'Dairy',
+      'Gluten',
+    ],
+  ),
+  'chorizo': Dish(
+    'chorizo',
+    'tomatillo salsa, queso fresco',
+    [
+      'Dairy',
+      'Gluten',
+    ],
+  ),
+  'margherita': Dish(
+    'margherita',
+    'organiz tomato sauce, mozzarella di gioia, fresh basil, olive oil',
+    [
+      'Dairy',
+      'Gluten',
+    ],
+  ),
+  'smoked mushroom': Dish(
+    'smoked mushroom',
+    'fromage blanc, 2yr white cheddar, parsley',
+    [
+      'Dairy',
+      'Gluten',
+    ],
+  ),
+  'white': Dish(
+    'white',
+    'fromage blanc, bacon, scallion, mozzarella',
+    [
+      'Dairy',
+      'Gluten',
+    ],
+  ),
+  'bacon & double cream brie': Dish(
+    'bacon & double cream brie',
+    'organic tomato sauce, fresh jalapeño',
+    [
+      'Dairy',
+      'Gluten',
+    ],
+  ),
+  'fried chicken slider': Dish(
+    'fried chicken slider',
+    'cornbread crusted, hawaiian roll, pickled cucumber, cabbage, lemon kalamata olive caper aioli',
+    [
+      'Gluten',
+    ],
+  ),
+  'frog legs': Dish(
+    'frog legs',
+    'coconut crusted, roasted garlic cauliflower puree, gremolata',
+    [
+      'Gluten',
+    ],
+  ),
+  'oaxacan pasta': Dish(
+    'oaxacan pasta',
+    'handmade pasta, oaxacan cream, romesco, toasted almond, cilantro',
+    [
+      'Gluten',
+      'Almond',
+    ],
+  ),
+  'sea bass balik': Dish(
+    'sea bass balik',
+    'pan seared, charred shishito pepper & black beans, tarragon aioli, pomegranate molasses, grilled lemon',
+    [
+      'Gluten',
+    ],
+  ),
+  'feta filo': Dish(
+    'feta filo',
+    'clover honey, toasted sesame, black caraway, flaxseed',
+    [
+      'Dairy',
+      'Sesame',
+    ],
+  ),
+  'shawarma tacos': Dish(
+    'shawarma tacos',
+    'mary\'s air chilled chicken, israeli spice mix, cabbage, pickled red onion, lemon garlic tahini',
+    [],
+  ),
+  'pistachio lamb kebab': Dish(
+    'pistachio lamb kebab',
+    'kale, turmeric, and beet tahini; cucumber, heirloom cherry tomato',
+    [
+      'Pistachio',
+    ],
+  ),
+  'stuffed mushroom': Dish(
+    'stuffed mushroom',
+    'five cheese blend, toasted pecan, basil walnut pesto, parmesan, parsley',
+    [
+      'Dairy',
+      'Pecan',
+      'Walnut',
+    ],
+  ),
+  'chipotle chicken wings': Dish(
+    'chipotle chicken wings',
+    'buttermilk batter, smoked pepper sauce, blue cheese creme fraiche, scallion',
+    [
+      'Dairy',
+    ],
+  ),
+  'oven roasted bone marrow': Dish(
+    'oven roasted bone marrow',
+    'caper panko, sea salt, black pepper, crostini',
+    [
+      'Gluten',
+    ],
+  ),
+  'bacari fries': Dish(
+    'bacari fries',
+    'chef\'s "bcn" sauce, fried egg',
+    [],
+  ),
+  'ricotta & beet gnocchi': Dish(
+    'ricotta & beet gnocchi',
+    'hand-made, chèvre fondue, chimichurri',
+    [
+      'Dairy',
+    ],
+  ),
+  'gorgonzola pasta': Dish(
+    'gorgonzola pasta',
+    'gorgonzola dulcelatte cream sauce, hand-made tripoline, zucchini, calabrese pepper, crushes pistachio',
+    [],
+  ),
+  'lamb stuffed eggplant': Dish(
+    'lamb stuffed eggplant',
+    'seasoned ground leg of lamb, lemon garlic emulsion, lemon chip, scallion',
+    [],
+  ),
+  'noa\'s cauliflower': Dish(
+    'noa\'s cauliflower',
+    'caramelized, chipotle sauce, mixed greens',
+    [
+      'Gluten',
+    ],
+  ),
+  'seared scallops': Dish(
+    'seared scallops',
+    'carrot parsnip puree, melted leeks, crispy capers, white truffle oil',
+    [
+      'Gluten',
+    ],
+  ),
+  'grilled chicken breast': Dish(
+    'grilled chicken breast',
+    'mary\'s air chilled chicken, crispy parmesan risotto cake, lemon jalapeño caper sauce',
+    [
+      'Gluten',
+    ],
+  ),
+  'bacari burger': Dish(
+    'bacari burger',
+    'all natural beef, open faced, fresh tomato, carmelized onion, worcestershire aioli, telera roll',
+    [
+      'Gluten',
+    ],
+  ),
+  'chef\'s salmon': Dish(
+    'chef\'s salmon',
+    'crispy skin, walnut crust, garlic herb bulgar, parsley',
+    [
+      'Walnut',
+    ],
+  ),
+  'hunter\'s mac & cheese': Dish(
+    'hunter\'s mac & cheese',
+    '5 cheese fondue, toasted panko, white truffle oil, scallion',
+    [
+      'Dairy',
+      'Gluten',
+    ],
+  ),
+  'brussels sprouts': Dish(
+    'brussels sprouts',
+    'caramelized, pomegranate molasses, creme fraiche, pomegranate seeds',
+    [],
+  ),
+  'seared petit filet': Dish(
+    'seared petit filet',
+    'grilled zucchini, house-made bernaise',
+    [],
+  ),
+  'glazed pork belly': Dish(
+    'glazed pork belly',
+    'sweet umami mulling glaze, toasted sesame seed, lemon, scallion, cilantro',
+    [
+      'Sesame',
+    ],
+  ),
+  'bacon wrapped medjool dates': Dish(
+    'bacon wrapped medjool dates',
+    'parmagiano-reggiano stuffed',
+    [
+      'Dairy',
+      'Gluten',
+    ],
+  ),
+  'wild mushroom polenta': Dish(
+    'wild mushroom polenta',
+    'chanterelle, wood ear, shiitake, cremini, scallion, cucumber',
+    [
+      'Gluten',
+    ],
+  ),
 };
 
 const Map<String, List<String>> DISHES_BY_CATEGORIES = {
-  'All Dishes': [
+
+/*  'All Dishes': [
     'double chocolate cake',
     'bread pudding',
     'cardamom chocolate ganache',
@@ -108,6 +399,7 @@ const Map<String, List<String>> DISHES_BY_CATEGORIES = {
     'bacon wrapped medjool dates',
     'wild mushroom polenta',
   ],
+  */
   'SWEET': [
     'double chocolate cake',
     'bread pudding',
@@ -165,7 +457,7 @@ const Map<String, List<String>> DISHES_BY_CATEGORIES = {
   ],
 };
 
-const Map<String, Set<String>> ALLERGENTS = {
+const Map<String, Set<String>> ALLERGENS = {
   'Gluten': {
     'asian pear salad',
     'shrimp ceviche',
@@ -216,7 +508,7 @@ const Map<String, Set<String>> ALLERGENTS = {
     'pistachio lamb kebab',
     'malabi',
   },
-  'Gluten-Free Possible': {
+  /*'Gluten-Free Possible': {
     'oaxacan pasta',
     'feta filo',
     'shawarma tacos',
@@ -237,7 +529,7 @@ const Map<String, Set<String>> ALLERGENTS = {
     'bacon & double cream brie',
     'bread pudding',
     'cardamom chocolate ganache',
-  },
+  },*/
   'Dairy': {
     'burrata caprese',
     'rainbow beet salad',
@@ -264,7 +556,7 @@ const Map<String, Set<String>> ALLERGENTS = {
   },
   'Pecan': {
     'stuffed mushroom',
-  },
+  },/*
   'Vegan Possible': {
     'shrimp ceviche',
     'poached shrimp',
@@ -306,6 +598,6 @@ const Map<String, Set<String>> ALLERGENTS = {
     'malabi',
     'bacari ice cream',
     'the best cake you\'ve ever had',
-  },
+  },*/
 };
 

@@ -13,6 +13,5 @@ void main() {
       fontFamily: 'HKGrotesk',
     ),
     home: DirectoryScreen(),
-  )
-);
+  ));
 }
