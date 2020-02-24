@@ -11,7 +11,7 @@ class MenuButton extends StatelessWidget {
   Widget build(BuildContext context) {
     // Maybe it should be just SizedBox?
     return SizedBox(
-      height: 69.0,
+      height: 65.0,
       child: RaisedButton(
         shape: RoundedRectangleBorder(
            borderRadius: new BorderRadius.circular(10.0),

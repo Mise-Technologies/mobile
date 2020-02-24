@@ -9,7 +9,7 @@ class DirectoryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(128.0),
+        preferredSize: Size.fromHeight(168.0),
         child: DirectoryAppBar(),
         ),
       body: Container(

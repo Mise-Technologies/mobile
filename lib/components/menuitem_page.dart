@@ -21,7 +21,7 @@ class _MenuItemPageState extends State<MenuItemPage> {
         itemBuilder: (context, i) {
           return DishTile(widget.dishes[i]);
         },
-        padding: EdgeInsets.only(bottom: kFloatingActionButtonMargin + 150)
+        padding: EdgeInsets.only(bottom: kFloatingActionButtonMargin)
       ),
     );
   }

@@ -38,15 +38,15 @@ class _FilterPopoutState extends State<FilterPopout> {
     }).toList();
     list.insert(0, 
       Container(
-        margin: EdgeInsets.only(right: 120.0, bottom: 5.0, top: 15.0),
+        margin: EdgeInsets.only(right: 100.0, bottom: 5.0, top: 15.0),
         child: Text("Common Allergens", style: TextStyle(fontSize: 18.0, color: Colors.white, fontWeight: FontWeight.bold))
     ));
     list.add(
       Padding(
-      padding: const EdgeInsets.only(top: 100.0), //Adjust This
+      padding: const EdgeInsets.only(top: 40.0), //Adjust This
       child: SizedBox(
           height: 49.0,
-          width: 224.0,
+          width: 234.0,
           child: RaisedButton( //Check when allergens need scrolling
             color: Colors.grey,
             shape: RoundedRectangleBorder(
@@ -61,10 +61,11 @@ class _FilterPopoutState extends State<FilterPopout> {
     )));
     return new Scaffold(
       appBar: PreferredSize(
-          preferredSize: Size.fromHeight(155.0),
+          preferredSize: Size.fromHeight(100.0),
             child: FilterAppBar()),
       body: Container(
         color: Colors.grey[800], 
+        padding: EdgeInsets.only(left: 15.0, right: 15.0),
         child: Column(
            // mainAxisAlignment: MainAxisAlignment.center,
             children: list,
