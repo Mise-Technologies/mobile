@@ -39,7 +39,7 @@ class _FilterPopoutState extends State<FilterPopout> {
     list.insert(0, 
       Container(
         margin: EdgeInsets.only(right: 100.0, bottom: 5.0, top: 15.0),
-        child: Text("Common Allergens", style: TextStyle(fontSize: 18.0, color: Colors.white, fontWeight: FontWeight.bold))
+        child: Text("Common Filters", style: TextStyle(fontSize: 18.0, color: Colors.white, fontWeight: FontWeight.bold))
     ));
     list.add(
       Padding(
