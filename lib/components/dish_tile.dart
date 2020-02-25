@@ -92,6 +92,12 @@ class _AllergenIconBar extends StatelessWidget {
       path = pref + 'Truffle.png'; break;
       case 'Onion':
       path = pref + 'Onion.png'; break;
+      case 'Fish':
+      path = pref + 'Fish.png'; break;
+      case 'Shellfish':
+      path = pref + 'Shellfish.png'; break;
+      case 'Egg':
+      path = pref + 'Egg.png'; break;
       default:
         break;
       }
