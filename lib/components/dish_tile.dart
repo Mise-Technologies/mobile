@@ -80,6 +80,18 @@ class _AllergenIconBar extends StatelessWidget {
         path = pref + 'Milk.png'; break;
       case 'Peanut':
         path = pref + 'Treenut.png'; break;
+      case 'Seeds':
+        path = pref + 'Seeds.png'; break;
+      case 'Cilantro':
+      path = pref + 'Cilantro.png'; break;
+      case 'Garlic':
+      path = pref + 'Garlic.png'; break;
+      case 'Soy':
+      path = pref + 'Soy.png'; break;
+      case 'Truffle':
+      path = pref + 'Truffle.png'; break;
+      case 'Onion':
+      path = pref + 'Onion.png'; break;
       default:
         break;
       }
