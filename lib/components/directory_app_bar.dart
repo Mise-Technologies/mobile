@@ -9,7 +9,8 @@ class DirectoryAppBar extends StatelessWidget {
         margin: const EdgeInsets.only(top: 62.0),
         child: Align(
           alignment: Alignment.center,
-          child: Text('BACARI', style: new TextStyle(fontSize: 30.0, color: Colors.white))
+          child: Image(image: AssetImage('assets/images/bacari-white.png'), height: 60.0),
+          //Text('BACARI', style: new TextStyle(fontSize: 30.0, color: Colors.white))
         )
       )
      );

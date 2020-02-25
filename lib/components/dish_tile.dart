@@ -10,16 +10,16 @@ class DishTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0),  color: Theme.of(context).accentColor),
-      margin: EdgeInsets.only(bottom: 20.0),
+      margin: EdgeInsets.only(bottom: 15.0), //between cards
       child: Column(
         children: <Widget>[
           ExpansionTile(
             trailing: Image(image: AssetImage('assets/icons/expand_arrow_more.png')),
             title: Container(
-              padding: EdgeInsets.all(5.0),
+              //padding: EdgeInsets.all(2.0),
               child: Text(
                 _dish.name, 
-                style: TextStyle(fontSize: 20.0, color: Colors.white)
+                style: TextStyle(fontSize: 18.0, color: Colors.white)
             )),
             children: <Widget>[
               Column(
@@ -39,7 +39,7 @@ class DishTile extends StatelessWidget {
     columnContent.add(
       Container(
         color: Color.fromRGBO(255, 255, 255, 0.05),
-        padding: EdgeInsets.symmetric(vertical: 5.0),
+        padding: EdgeInsets.symmetric(vertical: 0.0),
         child: ListTile(
           title: Text(dish.description, style: TextStyle(
             fontSize: 18.0, 
@@ -80,6 +80,24 @@ class _AllergenIconBar extends StatelessWidget {
         path = pref + 'Milk.png'; break;
       case 'Peanut':
         path = pref + 'Treenut.png'; break;
+      case 'Seeds':
+        path = pref + 'Seeds.png'; break;
+      case 'Cilantro':
+      path = pref + 'Cilantro.png'; break;
+      case 'Garlic':
+      path = pref + 'Garlic.png'; break;
+      case 'Soy':
+      path = pref + 'Soy.png'; break;
+      case 'Truffle':
+      path = pref + 'Truffle.png'; break;
+      case 'Onion':
+      path = pref + 'Onion.png'; break;
+      case 'Fish':
+      path = pref + 'Fish.png'; break;
+      case 'Shellfish':
+      path = pref + 'Shellfish.png'; break;
+      case 'Egg':
+      path = pref + 'Egg.png'; break;
       default:
         break;
       }
@@ -95,7 +113,7 @@ class _AllergenIconBar extends StatelessWidget {
       child: GridView.extent(
         crossAxisSpacing: 15.0,
         mainAxisSpacing: 15.0,
-        padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0),
+        padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
         shrinkWrap: true,
         primary: false,
         maxCrossAxisExtent: 32.0,
