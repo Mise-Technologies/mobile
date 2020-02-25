@@ -61,12 +61,12 @@ class _FilterPopoutState extends State<FilterPopout> {
     )));
     return new Scaffold(
       appBar: PreferredSize(
-          preferredSize: Size.fromHeight(100.0),
+          preferredSize: Size.fromHeight(25.0),
             child: FilterAppBar()),
       body: Container(
         color: Colors.grey[800], 
         padding: EdgeInsets.only(left: 15.0, right: 15.0),
-        child: Column(
+        child: ListView(
            // mainAxisAlignment: MainAxisAlignment.center,
             children: list,
           )
