@@ -105,7 +105,7 @@ class _MenuItemScreenState extends State<MenuItemScreenImpl> with SingleTickerPr
       floatingActionButton: new Visibility(
         visible: filterData.excluded.isNotEmpty,
         child: Container(
-          padding: EdgeInsets.only(bottom: 25.0),
+          padding: EdgeInsets.only(bottom: 20.0),
           child: RawMaterialButton(
             fillColor: Color.fromRGBO(255, 255, 255, 0.25),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)),
