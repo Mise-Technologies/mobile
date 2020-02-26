@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:moPass/data.dart';
 import 'package:moPass/models/filter_data.dart';
 import 'package:provider/provider.dart';
-import 'package:moPass/components/filter_app_bar.dart';
 
 class FilterPopout extends StatefulWidget {
 
@@ -37,12 +36,9 @@ class _FilterPopoutState extends State<FilterPopout> {
       ));
     }).toList();
     return new Scaffold(
-      appBar: PreferredSize(
-          preferredSize: Size.fromHeight(120.0),
-            child: FilterAppBar()),
       body: Container(
         color: Colors.grey[800], 
-       // padding: EdgeInsets.only(left: 15.0, right: 20.0),
+        padding: EdgeInsets.only(left: 15.0, top: 80.0),
         child: Column(
           children: <Widget>[
             Expanded(
@@ -51,7 +47,7 @@ class _FilterPopoutState extends State<FilterPopout> {
            )
            ), 
            Padding(
-            padding: const EdgeInsets.only(bottom: 50.0),
+            padding: const EdgeInsets.only(bottom: 40.0),
              child: SizedBox(
                   height: 49.0,
                   width: 234.0,
