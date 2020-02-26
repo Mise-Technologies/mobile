@@ -1,4 +1,4 @@
-# Learn Flutters
+# Mise mobile app
 
 ```
 lib
@@ -7,11 +7,7 @@ lib
 └── screens               // Basic screens of the app
 ```
 
-Refs:
-
-[Clean Flutter](https://github.com/ficiverson/clean-flutter)
-
-## Related
-
- - [Boilerplate Project](https://github.com/zubairehman/flutter-boilerplate-project)
- - [awesome-flutter](https://github.com/Solido/awesome-flutter)
+## Code Gen Stuff
+* Go to [codegen directory](codegen/)
+* Since *.csv files are git-ignored in the directory, add the menu csv file and name it "bacari-menu.csv"
+* run `python gen.py` and `/lib/data.dart` will be regenerated
