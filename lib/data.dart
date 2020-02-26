@@ -1,11 +1,11 @@
 import 'package:moPass/models/dish.dart';
 
 const MENU_CATEGORIES = [
-  'COLD',
-  'HOT',
-  'GRILLED PIZZA',
-  'SWEET',
-  'BRUNCH',
+  'Cold',
+  'Hot',
+  'Grilled Pizza',
+  'Sweet',
+  'Brunch',
 ];
 
 const Map<String, Dish> DISHES = {
@@ -172,7 +172,7 @@ const Map<String, Dish> DISHES = {
   ),
   'margherita': Dish(
     'margherita',
-    'organiz tomato sauce, mozzarella di gioia, fresh basil, olive oil',
+    'organic tomato sauce, mozzarella di gioia, fresh basil, olive oil',
     [
       'Dairy',
       'Gluten',
@@ -565,26 +565,15 @@ const Map<String, Dish> DISHES = {
 };
 
 const Map<String, List<String>> DISHES_BY_CATEGORIES = {
-  'SWEET': [
+  'Sweet': [
     'double chocolate cake',
     'bread pudding',
     'cardamom chocolate ganache',
     'malabi',
     'bacari ice cream',
     'the best cake you\'ve ever had',
-    'avocado toast',
-    'housemade granola bowl',
-    'free-range egg pizza',
-    'pancakes',
-    'potato hash',
-    'croque madame',
-    'shrimp & grits',
-    'crab cake benedict',
-    'tofu scramble',
-    'goat cheese polenta',
-    'chai tea custard',
   ],
-  'COLD': [
+  'Cold': [
     'cheese & salumi',
     'asian pear salad',
     'shrimp ceviche',
@@ -597,7 +586,7 @@ const Map<String, List<String>> DISHES_BY_CATEGORIES = {
     'bruschetta with basil walnut pesto',
     'tuscan kale salad',
   ],
-  'GRILLED PIZZA': [
+  'Grilled Pizza': [
     'asian pear & brie',
     'chorizo',
     'margherita',
@@ -606,7 +595,7 @@ const Map<String, List<String>> DISHES_BY_CATEGORIES = {
     'bacon & double cream brie',
     'vegan pizza',
   ],
-  'HOT': [
+  'Hot': [
     'fried chicken sliders',
     'frog legs',
     'oaxacan pasta',
@@ -634,7 +623,7 @@ const Map<String, List<String>> DISHES_BY_CATEGORIES = {
     'bacon wrapped medjool dates',
     'wild mushroom polenta',
   ],
-  'BRUNCH': [
+  'Brunch': [
     'avocado toast',
     'housemade granola bowl',
     'free-range egg pizza',
@@ -669,7 +658,6 @@ const Map<String, Set<String>> ALLERGENS = {
     'seared scallops',
     'grilled chicken breast',
     'bacari burger',
-    'chef\'s salmon',
     'hunter\'s mac & cheese',
     'brussels sprouts',
     'bacon wrapped medjool dates',
@@ -703,7 +691,6 @@ const Map<String, Set<String>> ALLERGENS = {
     'bruschetta with basil walnut pesto',
     'fried chicken sliders',
     'oaxacan pasta',
-    'shishito peppers',
     'feta filo',
     'grilled pistachio lamb kebab',
     'stuffed mushroom',
@@ -717,9 +704,7 @@ const Map<String, Set<String>> ALLERGENS = {
     'bacari burger',
     'chef\'s salmon',
     'hunter\'s mac & cheese',
-    'brussels sprouts',
-    'bacon wrapped medjool dates',
-    'wild mushroom polenta',
+    'glazed pork belly',
     'asian pear & brie',
     'chorizo',
     'margherita',
