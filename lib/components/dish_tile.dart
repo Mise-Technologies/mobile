@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:moPass/models/dish.dart';
 
-class DishTile extends StatelessWidget {
-  final Dish _dish;
+class DishTile extends StatefulWidget {
+  final Dish dish;
+  final bool initiallyExpanded;
+  final Function(bool) onExpansionChanged;
 
-  DishTile(this._dish);
+  DishTile(this.dish, {this.initiallyExpanded, @required this.onExpansionChanged});
+
+  @override
+  _DishTileState createState() => _DishTileState();
+}
+
+class _DishTileState extends State<DishTile> {
 
   @override
   Widget build(BuildContext context) {
@@ -14,20 +22,22 @@ class DishTile extends StatelessWidget {
       child: Column(
         children: <Widget>[
           ExpansionTile(
+            initiallyExpanded: widget.initiallyExpanded,
+            onExpansionChanged: widget.onExpansionChanged,
             trailing: Image(image: AssetImage('assets/icons/expand_arrow_more.png')),
             title: Container(
               //padding: EdgeInsets.all(2.0),
               child: Text(
-                _dish.name, 
+                widget.dish.name, 
                 style: TextStyle(fontSize: 18.0, color: Colors.white)
             )),
             children: <Widget>[
               Column(
-                children: _buildExpandableContent(_dish),
+                children: _buildExpandableContent(widget.dish),
               ),
             ],
           ),
-          _AllergenIconBar(_dish.allergies)
+          _AllergenIconBar(widget.dish.allergies)
         ],
       )
     );

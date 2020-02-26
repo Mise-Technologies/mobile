@@ -6,11 +6,21 @@ import 'package:provider/provider.dart';
 
 class FilterPopout extends StatefulWidget {
 
+  final void Function() onCloseListener;
+
+  FilterPopout(this.onCloseListener);
+
   @override
   _FilterPopoutState createState() => new _FilterPopoutState();
 }
 
 class _FilterPopoutState extends State<FilterPopout> {
+
+  @override
+  void dispose() {
+    super.dispose();
+    widget.onCloseListener();
+  }
 
   Function(bool) _boxToggled(FilterData filterData, String filterItem) {
     return (bool value) {
