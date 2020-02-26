@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moPass/components/clear_button.dart';
 import 'package:moPass/components/menuitem_page.dart';
 import 'package:moPass/data.dart';
 import 'package:moPass/models/filter_data.dart';
@@ -49,10 +50,6 @@ class _MenuItemScreenState extends State<MenuItemScreenImpl> with SingleTickerPr
     super.dispose();
   }
 
-  Decoration getIndicator() {
-    return const UnderlineTabIndicator();
-  }
-
   @override
   Widget build(BuildContext context) {
     final FilterData filterData = Provider.of<FilterData>(context);
@@ -78,15 +75,13 @@ class _MenuItemScreenState extends State<MenuItemScreenImpl> with SingleTickerPr
         bottom: TabBar( //scrollable tabs
           controller: _controller,
           isScrollable: true,
-          indicator: getIndicator(),
+          indicator: UnderlineTabIndicator(),
           tabs: MENU_CATEGORIES.map<Tab>(
             (String category) => Tab(text: category)
           ).toList(),
         ),
       ),
-      endDrawer: Drawer(
-        child: FilterPopout()
-      ),
+      endDrawer: Drawer(child: FilterPopout()),
       body: Container(
         margin: EdgeInsets.only(top: 23.0, left: 15.0, right: 15.0),
         child: TabBarView(
@@ -106,30 +101,7 @@ class _MenuItemScreenState extends State<MenuItemScreenImpl> with SingleTickerPr
         visible: filterData.excluded.isNotEmpty,
         child: Container(
           padding: EdgeInsets.only(bottom: 20.0),
-          child: RawMaterialButton(
-            fillColor: Color.fromRGBO(64, 64, 64, 1),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)),
-            onPressed: filterData.clearFilter,
-            child: SizedBox(
-              height: 100.0,
-              width: 240.0,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                mainAxisSize: MainAxisSize.max,
-                children: <Widget>[
-                  Text(hiddenCount < 2 ? '1 Filter Is Applied': '$hiddenCount Filters Are Applied', 
-                    style: TextStyle(
-                      fontSize: 18.0,
-                      color: Color.fromRGBO(255, 255, 255, 1)
-                  )),
-                  Text('Clear Filters', style: TextStyle(
-                    fontSize: 18.0,
-                    color: Colors.white
-                  )),
-                ]
-              ),
-            )
-          )
+          child: ClearButton(onPressed: filterData.clearFilter, hiddenCount: hiddenCount)
         )
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
