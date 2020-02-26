@@ -107,7 +107,7 @@ class _MenuItemScreenState extends State<MenuItemScreenImpl> with SingleTickerPr
         child: Container(
           padding: EdgeInsets.only(bottom: 20.0),
           child: RawMaterialButton(
-            fillColor: Color.fromRGBO(255, 255, 255, 0.25),
+            fillColor: Color.fromRGBO(64, 64, 64, 1),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)),
             onPressed: filterData.clearFilter,
             child: SizedBox(
@@ -117,10 +117,10 @@ class _MenuItemScreenState extends State<MenuItemScreenImpl> with SingleTickerPr
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 mainAxisSize: MainAxisSize.max,
                 children: <Widget>[
-                  Text(hiddenCount < 2 ? '1 Item Is Hidden': '$hiddenCount Items Are Hidden', 
+                  Text(hiddenCount < 2 ? '1 Filter Is Applied': '$hiddenCount Filters Are Applied', 
                     style: TextStyle(
                       fontSize: 18.0,
-                      color: Color.fromRGBO(255, 255, 255, 0.5)
+                      color: Color.fromRGBO(255, 255, 255, 1)
                   )),
                   Text('Clear Filters', style: TextStyle(
                     fontSize: 18.0,

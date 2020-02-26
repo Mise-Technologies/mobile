@@ -6,6 +6,7 @@ const MENU_CATEGORIES = [
   'HOT',
   'GRILLED PIZZA',
   'SWEET',
+  'BRUNCH',
 ];
 
 const Map<String, Dish> DISHES = {
@@ -451,6 +452,117 @@ const Map<String, Dish> DISHES = {
       'Treenuts',
     ],
   ),
+  'the best cake you\'ve ever had': Dish(
+    'the best cake you\'ve ever had',
+    'medjool dates, brown sugar caramel, crispy bacon',
+    [
+      'Egg',
+      'Dairy',
+    ],
+  ),
+  'avocado toast': Dish(
+    'avocado toast',
+    'house-baked superfood bread (gluten free), watermelon radish, olive oil, grey salt',
+    [
+      'Treenuts',
+      'Seeds',
+      'Egg',
+    ],
+  ),
+  'housemade granola bowl': Dish(
+    'housemade granola bowl',
+    'fresh fruit, greek yogurt, clover honey, fresh mint',
+    [
+      'Dairy',
+    ],
+  ),
+  'free-range egg pizza': Dish(
+    'free-range egg pizza',
+    'fromage blanc, caramalized onion, mixed greens, mozzerella',
+    [
+      'Gluten',
+      'Dairy',
+      'Egg',
+      'Onion',
+    ],
+  ),
+  'pancakes': Dish(
+    'pancakes',
+    'whole wheat, flax seed, hemp seed, cardamom butter, fresh fruit',
+    [
+      'Gluten',
+      'Seeds',
+      'Egg',
+      'Dairy',
+    ],
+  ),
+  'potato hash': Dish(
+    'potato hash',
+    'chorizo, bell pepper, caramelized onion, mornay sauce, fried egg',
+    [
+      'Dairy',
+      'Gluten',
+      'Onion',
+      'Egg',
+    ],
+  ),
+  'croque madame': Dish(
+    'croque madame',
+    'pastrami and onion ragu, five-cheese, fried egg, telera roll',
+    [
+      'Dairy',
+      'Onion',
+      'Egg',
+      'Wheat',
+    ],
+  ),
+  'shrimp & grits': Dish(
+    'shrimp & grits',
+    'slow poached, harissa butter, yellow corn grits, cucumber, scallion, grey salt',
+    [
+      'Dairy',
+      'Shellfish',
+      'Garlic',
+      'Seeds',
+    ],
+  ),
+  'crab cake benedict': Dish(
+    'crab cake benedict',
+    'panko rusted claw meat, freshly made grapefruit hollandaise, sous vide egg',
+    [
+      'Dairy',
+      'Gluten',
+      'Onion',
+      'Egg',
+      'Shellfish',
+    ],
+  ),
+  'tofu scramble': Dish(
+    'tofu scramble',
+    'roasted bell pepper, kale, spanish onion, pomegranate sweet chili sauce, grilled baguette',
+    [
+      'Soy',
+      'Onion',
+      'Gluten',
+    ],
+  ),
+  'goat cheese polenta': Dish(
+    'goat cheese polenta',
+    'ground leg of lamb ragu, smoked pepper sauce, fried egg',
+    [
+      'Dairy',
+      'Egg',
+      'Onion',
+      'Garlic',
+    ],
+  ),
+  'chai tea custard': Dish(
+    'chai tea custard',
+    'chia seed, coconut mild, elderflower macerated berries, crushed marcona almond',
+    [
+      'Treenuts',
+    ],
+  ),
 };
 
 const Map<String, List<String>> DISHES_BY_CATEGORIES = {
@@ -504,6 +616,18 @@ const Map<String, List<String>> DISHES_BY_CATEGORIES = {
     'cardamom chocolate ganache',
     'malabi',
     'bacari ice cream',
+    'the best cake you\'ve ever had',
+    'avocado toast',
+    'housemade granola bowl',
+    'free-range egg pizza',
+    'pancakes',
+    'potato hash',
+    'croque madame',
+    'shrimp & grits',
+    'crab cake benedict',
+    'tofu scramble',
+    'goat cheese polenta',
+    'chai tea custard',
   ],
   'COLD': [
     'cheese & salumi',
@@ -561,6 +685,20 @@ const Map<String, List<String>> DISHES_BY_CATEGORIES = {
     'cardamom chocolate ganache',
     'malabi',
     'bacari ice cream',
+    'the best cake you\'ve ever had',
+  ],
+  'BRUNCH': [
+    'avocado toast',
+    'housemade granola bowl',
+    'free-range egg pizza',
+    'pancakes',
+    'potato hash',
+    'croque madame',
+    'shrimp & grits',
+    'crab cake benedict',
+    'tofu scramble',
+    'goat cheese polenta',
+    'chai tea custard',
   ],
 };
 
@@ -579,6 +717,9 @@ const Map<String, Set<String>> ALLERGENS = {
     'double chocolate cake',
     'bread pudding',
     'cardamom chocolate ganache',
+    'pancakes',
+    'croque madame',
+    'crab cake benedict',
   },
   'Vegan Possible': {
     'cheese & salumi',
@@ -616,6 +757,15 @@ const Map<String, Set<String>> ALLERGENS = {
     'cardamom chocolate ganache',
     'malabi',
     'bacari ice cream',
+    'the best cake you\'ve ever had',
+    'avocado toast',
+    'free-range egg pizza',
+    'pancakes',
+    'potato hash',
+    'croque madame',
+    'shrimp & grits',
+    'crab cake benedict',
+    'goat cheese polenta',
   },
   'Dairy': {
     'cheese & salumi',
@@ -650,6 +800,15 @@ const Map<String, Set<String>> ALLERGENS = {
     'cardamom chocolate ganache',
     'malabi',
     'bacari ice cream',
+    'the best cake you\'ve ever had',
+    'housemade granola bowl',
+    'free-range egg pizza',
+    'pancakes',
+    'potato hash',
+    'croque madame',
+    'shrimp & grits',
+    'crab cake benedict',
+    'goat cheese polenta',
   },
   'Gluten': {
     'cheese & salumi',
@@ -684,6 +843,11 @@ const Map<String, Set<String>> ALLERGENS = {
     'double chocolate cake',
     'bread pudding',
     'cardamom chocolate ganache',
+    'free-range egg pizza',
+    'pancakes',
+    'potato hash',
+    'crab cake benedict',
+    'tofu scramble',
   },
   'Egg': {
     'asian pear salad',
@@ -696,6 +860,14 @@ const Map<String, Set<String>> ALLERGENS = {
     'bacari burger',
     'chef\'s salmon',
     'seared petit filet',
+    'the best cake you\'ve ever had',
+    'avocado toast',
+    'free-range egg pizza',
+    'pancakes',
+    'potato hash',
+    'croque madame',
+    'crab cake benedict',
+    'goat cheese polenta',
   },
   'Soy': {
     'asian pear salad',
@@ -703,9 +875,12 @@ const Map<String, Set<String>> ALLERGENS = {
     'tuscan kale salad',
     'bacari burger',
     'glazed pork belly',
+    'tofu scramble',
   },
   'Shellfish': {
     'shrimp ceviche',
+    'shrimp & grits',
+    'crab cake benedict',
   },
   'Cilantro': {
     'shrimp ceviche',
@@ -729,6 +904,12 @@ const Map<String, Set<String>> ALLERGENS = {
     'chorizo',
     'margherita',
     'bacon & double cream brie',
+    'free-range egg pizza',
+    'potato hash',
+    'croque madame',
+    'crab cake benedict',
+    'tofu scramble',
+    'goat cheese polenta',
   },
   'Garlic': {
     'shrimp ceviche',
@@ -761,6 +942,8 @@ const Map<String, Set<String>> ALLERGENS = {
     'margherita',
     'smoked mushroom',
     'bacon & double cream brie',
+    'shrimp & grits',
+    'goat cheese polenta',
   },
   'Treenuts': {
     'burrata caprese',
@@ -775,6 +958,8 @@ const Map<String, Set<String>> ALLERGENS = {
     'cardamom chocolate ganache',
     'malabi',
     'bacari ice cream',
+    'avocado toast',
+    'chai tea custard',
   },
   'Sesame': {
     'feta filo',
@@ -783,6 +968,9 @@ const Map<String, Set<String>> ALLERGENS = {
   },
   'Seeds': {
     'bacari fries',
+    'avocado toast',
+    'pancakes',
+    'shrimp & grits',
   },
   'Fish': {
     'bacari burger',
@@ -790,6 +978,9 @@ const Map<String, Set<String>> ALLERGENS = {
   },
   'Truffle': {
     'hunter\'s mac & cheese',
+  },
+  'Wheat': {
+    'croque madame',
   },
 };
 
