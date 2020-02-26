@@ -68,7 +68,6 @@ class _FilterPopoutState extends State<FilterPopout> {
                     ),
                     onPressed: () {
                       Navigator.pop(context);
-                      filterData.saveFilter();
                     },
                     child: Text('Apply Filter', style: TextStyle(fontSize: 16.0, color: Color.fromRGBO(64, 64, 64, 1))),
                   )
