@@ -24,52 +24,49 @@ class _FilterPopoutState extends State<FilterPopout> {
     final filterData = Provider.of<FilterData>(context);
     var list = ALLERGENS.keys.map<Widget>((String allergen) {
       return Theme(
-        data: Theme.of(context).copyWith(unselectedWidgetColor: Colors.grey),
+        data: Theme.of(context).copyWith(unselectedWidgetColor: Color.fromRGBO(255, 255, 255, 0.5)),
         child: CheckboxListTile(
 
         title: Text(allergen, style: TextStyle(fontSize: 18.0, color: Colors.white)),
         onChanged: _boxToggled(filterData, allergen),
         value: filterData.getItem(allergen),
         controlAffinity: ListTileControlAffinity.leading,
-        checkColor: Colors.grey[800],
+        checkColor: Color.fromRGBO(64, 64, 64, 1),
         activeColor: Colors.white,
         dense: true,
       ));
     }).toList();
-    list.insert(0, 
-      Container(
-        margin: EdgeInsets.only(right: 100.0, bottom: 5.0, top: 15.0),
-        child: Text("Common Filters", style: TextStyle(fontSize: 18.0, color: Colors.white, fontWeight: FontWeight.bold))
-    ));
-    list.add(
-      Padding(
-      padding: const EdgeInsets.only(top: 40.0), //Adjust This
-      child: SizedBox(
-          height: 49.0,
-          width: 234.0,
-          child: RaisedButton( //Check when allergens need scrolling
-            color: Colors.grey,
-            shape: RoundedRectangleBorder(
-              borderRadius: new BorderRadius.circular(10.0),
-            ),
-            onPressed: () {
-              Navigator.pop(context);
-              filterData.saveFilter();
-            },
-            child: Text('Apply Filter', style: TextStyle(fontSize: 16.0, color: Colors.grey[800])),
-          )
-    )));
     return new Scaffold(
       appBar: PreferredSize(
-          preferredSize: Size.fromHeight(25.0),
+          preferredSize: Size.fromHeight(120.0),
             child: FilterAppBar()),
       body: Container(
         color: Colors.grey[800], 
-        padding: EdgeInsets.only(left: 15.0, right: 15.0),
-        child: ListView(
-           // mainAxisAlignment: MainAxisAlignment.center,
+       // padding: EdgeInsets.only(left: 15.0, right: 20.0),
+        child: Column(
+          children: <Widget>[
+            Expanded(
+            child: ListView(
             children: list,
-          )
-    ));
+           )
+           ), 
+           Padding(
+            padding: const EdgeInsets.only(bottom: 50.0),
+             child: SizedBox(
+                  height: 49.0,
+                  width: 234.0,
+                  child: RaisedButton( //Check when allergens need scrolling
+                    color: Color.fromRGBO(159, 159, 159, 1),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(10.0),
+                    ),
+                    onPressed: () {
+                      Navigator.pop(context);
+                      filterData.saveFilter();
+                    },
+                    child: Text('Apply Filter', style: TextStyle(fontSize: 16.0, color: Color.fromRGBO(64, 64, 64, 1))),
+                  )
+            ))
+    ] )));
   }
 }
