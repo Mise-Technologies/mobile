@@ -50,8 +50,14 @@ f = open(os.path.dirname(__file__) + '../lib/data.dart', 'w')
 f.write("import 'package:moPass/models/dish.dart';\n")
 f.write("\n")
 f.write("const MENU_CATEGORIES = [\n")
-f.write("  'All Dishes',\n")
-for key in all_dishes:
+# f.write("  'All Dishes',\n")
+for key in [
+  "COLD",
+  "HOT",
+  "GRILLED PIZZA",
+  "SWEET",
+  "BRUNCH"
+]:
   f.write("  '{}',\n".format(key))
 f.write("];\n")
 f.write("\n")
@@ -72,11 +78,11 @@ f.write("};\n")
 f.write("\n")
 
 f.write("const Map<String, List<String>> DISHES_BY_CATEGORIES = {\n")
-f.write("  'All Dishes': [\n")
-for key in all_dishes:
-  for dish in all_dishes[key]:
-    f.write("    '{}',\n".format(escape_character(dish[0])))
-f.write("  ],\n")
+# f.write("  'All Dishes': [\n")
+# for key in all_dishes:
+#   for dish in all_dishes[key]:
+#     f.write("    '{}',\n".format(escape_character(dish[0])))
+# f.write("  ],\n")
 for key in all_dishes:
   f.write("  '{}': [\n".format(key))
   for dish in all_dishes[key]:
