@@ -26,7 +26,7 @@ class ClearButton extends StatelessWidget {
             Text(hiddenCount < 2 ? '1 Filter Is Applied': '$hiddenCount Filters Are Applied', 
               style: TextStyle(
                 fontSize: 18.0,
-                color: Color.fromRGBO(255, 255, 255, 1)
+                color: Color.fromRGBO(159, 159, 159, 1)
             )),
             Text('Clear Filters', style: TextStyle(
               fontSize: 18.0,

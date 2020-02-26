@@ -36,6 +36,7 @@ class FilterData extends ChangeNotifier {
       throw ErrorDescription('Inconsistent filter data');
     }
     _filters[item] = value;
+    saveFilter();
   }
 
   void saveFilter() {

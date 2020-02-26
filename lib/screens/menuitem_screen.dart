@@ -82,11 +82,11 @@ class _MenuItemScreenState extends State<MenuItemScreenImpl> with SingleTickerPr
         ),
       ),
       endDrawer: Drawer(child: FilterPopout(() {
-        WidgetsBinding.instance.addPostFrameCallback((_){
-          if (!_scaffoldKey.currentState.isEndDrawerOpen) {
-            filterData.saveFilter();
-          }
-        });
+        // WidgetsBinding.instance.addPostFrameCallback((_){
+        //   if (!_scaffoldKey.currentState.isEndDrawerOpen) {
+        //     filterData.saveFilter();
+        //   }
+        // });
       })),
       body: Container(
         margin: EdgeInsets.only(top: 23.0, left: 15.0, right: 15.0),

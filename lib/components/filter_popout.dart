@@ -31,6 +31,7 @@ class _FilterPopoutState extends State<FilterPopout> {
   @override
   Widget build(BuildContext context) {
     final filterData = Provider.of<FilterData>(context);
+    final hiddenCount = filterData.checkedItemCount;
     var list = ALLERGENS.keys.map<Widget>((String allergen) {
       return Theme(
         data: Theme.of(context).copyWith(unselectedWidgetColor: Color.fromRGBO(255, 255, 255, 0.5)),
@@ -59,18 +60,21 @@ class _FilterPopoutState extends State<FilterPopout> {
            Padding(
             padding: const EdgeInsets.only(bottom: 40.0),
              child: SizedBox(
-                  height: 49.0,
-                  width: 234.0,
-                  child: RaisedButton( //Check when allergens need scrolling
-                    color: Color.fromRGBO(159, 159, 159, 1),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(10.0),
-                    ),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: Text('Apply Filter', style: TextStyle(fontSize: 16.0, color: Color.fromRGBO(64, 64, 64, 1))),
-                  )
+              height: 49.0,
+              width: 234.0,
+              child: RaisedButton( //Check when allergens need scrolling
+                color: hiddenCount == 0? Color.fromRGBO(111, 111, 111, 1): Color.fromRGBO(180, 180, 180, 1),
+                shape: RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(10.0),
+                ),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text(hiddenCount > 0? 'Apply Filter ($hiddenCount)': 'Apply Filter', 
+                  style: TextStyle(fontSize: 16.0, 
+                  color: Color.fromRGBO(64, 64, 64, 1))
+                ),
+              )
             ))
     ] )));
   }
