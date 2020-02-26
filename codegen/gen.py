@@ -10,8 +10,8 @@ def escape_character(string, chars = ["\'"]):
 all_dishes = {}
 all_allergens = {}
 
-all_allergens['Gluten-Free Possible'] = []
-all_allergens['Vegan Possible'] = []
+# all_allergens['Gluten-Free Possible'] = []
+# all_allergens['Vegan Possible'] = []
 
 with open('bacari-menu.csv') as csv_file:
   reader = csv.reader(csv_file)
@@ -39,11 +39,11 @@ with open('bacari-menu.csv') as csv_file:
     # adding dish to category
     all_dishes[row[0]].append((row[1], row[2], row[3], as_))
 
-    if not row[6] == 'X':
-      all_allergens["Gluten-Free Possible"].append(row[1])
+    # if not row[6] == 'X':
+    #   all_allergens["Gluten-Free Possible"].append(row[1])
     
-    if not row[7] == 'X':
-      all_allergens["Vegan Possible"].append(row[1])
+    # if not row[7] == 'X':
+    #   all_allergens["Vegan Possible"].append(row[1])
 
 f = open(os.path.dirname(__file__) + '../lib/data.dart', 'w')
 
@@ -86,7 +86,21 @@ f.write("};\n")
 f.write("\n")
 
 f.write("const Map<String, Set<String>> ALLERGENS = {\n")
-for allergen in all_allergens:
+for allergen in [
+  "Dairy", 
+  "Gluten", 
+  "Treenuts", 
+  "Shellfish", 
+  "Egg", 
+  "Soy", 
+  "Fish", 
+  "Seeds", 
+  "Sesame", 
+  "Garlic", 
+  "Onion", 
+  "Cilantro", 
+  "Truffle"
+]:
   f.write("  '{}': {{\n".format(allergen))
   for dish in all_allergens[allergen]:
     f.write("    '{}',\n".format(escape_character(dish)))

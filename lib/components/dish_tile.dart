@@ -64,46 +64,8 @@ class _AllergenIconBar extends StatelessWidget {
     List<Image> allergenIcons = [];
     for (String allergen in _allergens) {
       String pref = 'assets/icons/allergens/';
-      String path;
-      switch (allergen) {
-      case 'Walnut':
-      case 'Almond':
-      case 'Pistachio':
-      case 'Pecan':
-      case 'Hazelnut':
-        path = pref + 'Treenut.png'; break;
-      case 'Gluten':
-        path = pref + 'Wheat.png'; break;
-      case 'Sesame':
-        path = pref + 'Sesame.png'; break;
-      case 'Dairy':
-        path = pref + 'Milk.png'; break;
-      case 'Peanut':
-        path = pref + 'Treenut.png'; break;
-      case 'Seeds':
-        path = pref + 'Seeds.png'; break;
-      case 'Cilantro':
-      path = pref + 'Cilantro.png'; break;
-      case 'Garlic':
-      path = pref + 'Garlic.png'; break;
-      case 'Soy':
-      path = pref + 'Soy.png'; break;
-      case 'Truffle':
-      path = pref + 'Truffle.png'; break;
-      case 'Onion':
-      path = pref + 'Onion.png'; break;
-      case 'Fish':
-      path = pref + 'Fish.png'; break;
-      case 'Shellfish':
-      path = pref + 'Shellfish.png'; break;
-      case 'Egg':
-      path = pref + 'Egg.png'; break;
-      default:
-        break;
-      }
-      if (path != null) {
-        allergenIcons.add(Image(image: AssetImage(path)));
-      }
+      String path = pref + allergen + '.png';
+      allergenIcons.add(Image(image: AssetImage(path)));
     }
     return Container(
       decoration: BoxDecoration(border: Border(top: BorderSide(
