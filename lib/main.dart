@@ -6,10 +6,8 @@ void main() {
     title: 'Mise',
     theme: ThemeData(
       scaffoldBackgroundColor: Colors.black,
-      //primarySwatch: MaterialColor(Colors.black[500].value, Colors.black),
       primaryColor: Colors.black,
-      //backgroundColor: Colors.black,
-      accentColor: Colors.grey[900].withOpacity(0.5),
+      accentColor: Color.fromRGBO(255, 255, 255, 0.1),
       fontFamily: 'HKGrotesk',
     ),
     home: DirectoryScreen(),
