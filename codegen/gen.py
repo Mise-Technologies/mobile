@@ -52,11 +52,11 @@ f.write("\n")
 f.write("const MENU_CATEGORIES = [\n")
 # f.write("  'All Dishes',\n")
 for key in [
-  "COLD",
-  "HOT",
-  "GRILLED PIZZA",
-  "SWEET",
-  "BRUNCH"
+  "Cold",
+  "Hot",
+  "Grilled Pizza",
+  "Sweet",
+  "Brunch"
 ]:
   f.write("  '{}',\n".format(key))
 f.write("];\n")
@@ -96,9 +96,9 @@ for allergen in [
   "Dairy", 
   "Gluten", 
   "Treenuts", 
-  "Shellfish", 
   "Egg", 
   "Soy", 
+  "Shellfish", 
   "Fish", 
   "Seeds", 
   "Sesame", 
