@@ -9,55 +9,6 @@ const MENU_CATEGORIES = [
 ];
 
 const Map<String, Dish> DISHES = {
-  'double chocolate cake': Dish(
-    'double chocolate cake',
-    'chocolate pudding, hazelnut brittle',
-    [
-      'Treenuts',
-      'Gluten',
-    ],
-  ),
-  'bread pudding': Dish(
-    'bread pudding',
-    'clover honey custard, vanilla bean ice cream',
-    [
-      'Dairy',
-      'Gluten',
-    ],
-  ),
-  'cardamom chocolate ganache': Dish(
-    'cardamom chocolate ganache',
-    'brown butter cookie dough, banana brulee, candied walnut, chantilly cream',
-    [
-      'Dairy',
-      'Gluten',
-      'Treenuts',
-    ],
-  ),
-  'malabi': Dish(
-    'malabi',
-    'rosewater custard, shaved coconut, hibiscus flower syrup, candied pistachio',
-    [
-      'Dairy',
-      'Treenuts',
-    ],
-  ),
-  'bacari ice cream': Dish(
-    'bacari ice cream',
-    'vanilla bean, walnut, clover honey',
-    [
-      'Dairy',
-      'Treenuts',
-    ],
-  ),
-  'the best cake you\'ve ever had': Dish(
-    'the best cake you\'ve ever had',
-    'medjool dates, brown sugar caramel, crispy bacon',
-    [
-      'Egg',
-      'Dairy',
-    ],
-  ),
   'cheese & salumi': Dish(
     'cheese & salumi',
     'saint-andrè, gorgonzola dulce, midnight moon, mahon, salame varzi, salame calabrese served with: whole grain mustard, cornichon, caper berry, dried apricot, baguette',
@@ -91,6 +42,7 @@ const Map<String, Dish> DISHES = {
     'citrus chili sauce, shaved radish, parsley, basil',
     [
       'Garlic',
+      'Shellfish',
     ],
   ),
   'burrata caprese': Dish(
@@ -152,68 +104,6 @@ const Map<String, Dish> DISHES = {
       'Soy',
     ],
   ),
-  'asian pear & brie': Dish(
-    'asian pear & brie',
-    'guava fromage blanc, wild arugula, grey salt, frantoia olive oil',
-    [
-      'Dairy',
-      'Gluten',
-    ],
-  ),
-  'chorizo': Dish(
-    'chorizo',
-    'tomatillo salsa, queso fresco',
-    [
-      'Dairy',
-      'Gluten',
-      'Onion',
-      'Garlic',
-    ],
-  ),
-  'margherita': Dish(
-    'margherita',
-    'organic tomato sauce, mozzarella di gioia, fresh basil, olive oil',
-    [
-      'Dairy',
-      'Gluten',
-      'Onion',
-      'Garlic',
-    ],
-  ),
-  'smoked mushroom': Dish(
-    'smoked mushroom',
-    'fromage blanc, 2yr white cheddar, parsley',
-    [
-      'Dairy',
-      'Gluten',
-      'Garlic',
-    ],
-  ),
-  'white': Dish(
-    'white',
-    'fromage blanc, bacon, scallion, mozzarella',
-    [
-      'Dairy',
-      'Gluten',
-    ],
-  ),
-  'bacon & double cream brie': Dish(
-    'bacon & double cream brie',
-    'organic tomato sauce, fresh jalapeño',
-    [
-      'Dairy',
-      'Gluten',
-      'Onion',
-      'Garlic',
-    ],
-  ),
-  'vegan pizza': Dish(
-    'vegan pizza',
-    'organix tomato sauce, mixed greens, roasted garlic, caramelized onion, fresh tomato',
-    [
-      'Gluten',
-    ],
-  ),
   'fried chicken sliders': Dish(
     'fried chicken sliders',
     'cornbread crusted, hawaiian roll, pickled cucumber, cabbage, lemon kalamata olive caper aioli',
@@ -255,6 +145,7 @@ const Map<String, Dish> DISHES = {
       'Egg',
       'Garlic',
       'Onion',
+      'Fish',
     ],
   ),
   'feta filo': Dish(
@@ -371,6 +262,7 @@ const Map<String, Dish> DISHES = {
       'Dairy',
       'Onion',
       'Garlic',
+      'Shellfish',
     ],
   ),
   'grilled chicken breast': Dish(
@@ -457,6 +349,117 @@ const Map<String, Dish> DISHES = {
     [
       'Dairy',
       'Onion',
+    ],
+  ),
+  'asian pear & brie': Dish(
+    'asian pear & brie',
+    'guava fromage blanc, wild arugula, grey salt, frantoia olive oil',
+    [
+      'Dairy',
+      'Gluten',
+    ],
+  ),
+  'chorizo': Dish(
+    'chorizo',
+    'tomatillo salsa, queso fresco',
+    [
+      'Dairy',
+      'Gluten',
+      'Onion',
+      'Garlic',
+    ],
+  ),
+  'margherita': Dish(
+    'margherita',
+    'organic tomato sauce, mozzarella di gioia, fresh basil, olive oil',
+    [
+      'Dairy',
+      'Gluten',
+      'Onion',
+      'Garlic',
+    ],
+  ),
+  'smoked mushroom': Dish(
+    'smoked mushroom',
+    'fromage blanc, 2yr white cheddar, parsley',
+    [
+      'Dairy',
+      'Gluten',
+      'Garlic',
+    ],
+  ),
+  'white': Dish(
+    'white',
+    'fromage blanc, bacon, scallion, mozzarella',
+    [
+      'Dairy',
+      'Gluten',
+    ],
+  ),
+  'bacon & double cream brie': Dish(
+    'bacon & double cream brie',
+    'organic tomato sauce, fresh jalapeño',
+    [
+      'Dairy',
+      'Gluten',
+      'Onion',
+      'Garlic',
+    ],
+  ),
+  'vegan pizza': Dish(
+    'vegan pizza',
+    'organix tomato sauce, mixed greens, roasted garlic, caramelized onion, fresh tomato',
+    [
+      'Gluten',
+    ],
+  ),
+  'double chocolate cake': Dish(
+    'double chocolate cake',
+    'chocolate pudding, hazelnut brittle',
+    [
+      'Treenuts',
+      'Gluten',
+    ],
+  ),
+  'bread pudding': Dish(
+    'bread pudding',
+    'clover honey custard, vanilla bean ice cream',
+    [
+      'Dairy',
+      'Gluten',
+    ],
+  ),
+  'cardamom chocolate ganache': Dish(
+    'cardamom chocolate ganache',
+    'brown butter cookie dough, banana brulee, candied walnut, chantilly cream',
+    [
+      'Dairy',
+      'Gluten',
+      'Treenuts',
+    ],
+  ),
+  'malabi': Dish(
+    'malabi',
+    'rosewater custard, shaved coconut, hibiscus flower syrup, candied pistachio',
+    [
+      'Dairy',
+      'Treenuts',
+    ],
+  ),
+  'bacari ice cream': Dish(
+    'bacari ice cream',
+    'vanilla bean, walnut, clover honey',
+    [
+      'Dairy',
+      'Treenuts',
+    ],
+  ),
+  'the best cake you\'ve ever had': Dish(
+    'the best cake you\'ve ever had',
+    'medjool dates, brown sugar caramel, crispy bacon',
+    [
+      'Egg',
+      'Dairy',
     ],
   ),
   'avocado toast': Dish(
@@ -565,14 +568,6 @@ const Map<String, Dish> DISHES = {
 };
 
 const Map<String, List<String>> DISHES_BY_CATEGORIES = {
-  'Sweet': [
-    'double chocolate cake',
-    'bread pudding',
-    'cardamom chocolate ganache',
-    'malabi',
-    'bacari ice cream',
-    'the best cake you\'ve ever had',
-  ],
   'Cold': [
     'cheese & salumi',
     'asian pear salad',
@@ -585,15 +580,6 @@ const Map<String, List<String>> DISHES_BY_CATEGORIES = {
     'bruschetta with bell pepper',
     'bruschetta with basil walnut pesto',
     'tuscan kale salad',
-  ],
-  'Grilled Pizza': [
-    'asian pear & brie',
-    'chorizo',
-    'margherita',
-    'smoked mushroom',
-    'white',
-    'bacon & double cream brie',
-    'vegan pizza',
   ],
   'Hot': [
     'fried chicken sliders',
@@ -622,6 +608,23 @@ const Map<String, List<String>> DISHES_BY_CATEGORIES = {
     'glazed pork belly',
     'bacon wrapped medjool dates',
     'wild mushroom polenta',
+  ],
+  'Grilled Pizza': [
+    'asian pear & brie',
+    'chorizo',
+    'margherita',
+    'smoked mushroom',
+    'white',
+    'bacon & double cream brie',
+    'vegan pizza',
+  ],
+  'Sweet': [
+    'double chocolate cake',
+    'bread pudding',
+    'cardamom chocolate ganache',
+    'malabi',
+    'bacari ice cream',
+    'the best cake you\'ve ever had',
   ],
   'Brunch': [
     'avocado toast',
@@ -738,11 +741,6 @@ const Map<String, Set<String>> ALLERGENS = {
     'avocado toast',
     'chai tea custard',
   },
-  'Shellfish': {
-    'shrimp ceviche',
-    'shrimp & grits',
-    'crab cake benedict',
-  },
   'Egg': {
     'asian pear salad',
     'sea bass balik',
@@ -771,7 +769,15 @@ const Map<String, Set<String>> ALLERGENS = {
     'glazed pork belly',
     'tofu scramble',
   },
+  'Shellfish': {
+    'shrimp ceviche',
+    'poached shrimp',
+    'seared scallops',
+    'shrimp & grits',
+    'crab cake benedict',
+  },
   'Fish': {
+    'sea bass balik',
     'bacari burger',
     'chef\'s salmon',
   },
