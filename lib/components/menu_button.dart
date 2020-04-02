@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:moPass/screens/menuitem_screen.dart';
 
 class MenuButton extends StatelessWidget {
 
-  final category;
+  final text;
+  var textAlign = TextAlign.left;
+  final void Function() onPressed;
+  
 
-  MenuButton(this.category);
+  MenuButton({this.text, this.textAlign, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -24,20 +26,16 @@ class MenuButton extends StatelessWidget {
             Expanded( //prevents overflow
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 24.0),
-                child: Text(this.category, style: TextStyle(fontSize: 18.0, color: Colors.white))
+                child: Text(
+                  this.text, 
+                  style: TextStyle(fontSize: 18.0, color: Colors.white),
+                  textAlign: this.textAlign,
+                )
               )
-            ), 
-            Image(
-              image: AssetImage('assets/icons/arrow_right.png')
-            ),
+            )
           ]
         ),
-        onPressed: () {
-          Navigator.push(
-            context, 
-            MaterialPageRoute(builder: (context) => MenuItemScreen(this.category))
-          );
-        }
+        onPressed: this.onPressed
       )
       
     );
