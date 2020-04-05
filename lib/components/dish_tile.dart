@@ -19,27 +19,29 @@ class _DishTileState extends State<DishTile> {
     return Container(
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0),  color: Theme.of(context).accentColor),
       margin: EdgeInsets.only(bottom: 15.0), //between cards
-      child: Column(
-        children: <Widget>[
-          ExpansionTile(
-            initiallyExpanded: widget.initiallyExpanded,
-            onExpansionChanged: widget.onExpansionChanged,
-            trailing: Image(image: AssetImage('assets/icons/expand_arrow_more.png')),
-            title: Container(
-              //padding: EdgeInsets.all(2.0),
-              child: Text(
-                widget.dish.name, 
-                style: TextStyle(fontSize: 18.0, color: Colors.white)
-            )),
-            children: <Widget>[
-              Column(
-                children: _buildExpandableContent(widget.dish),
-              ),
-            ],
-          ),
-          _AllergenIconBar(widget.dish.allergies)
-        ],
-      )
+      child: Theme(
+        data: Theme.of(context).copyWith(accentColor: Colors.white),
+        child: Column(
+          children: <Widget>[
+            ExpansionTile(
+              initiallyExpanded: widget.initiallyExpanded,
+              onExpansionChanged: widget.onExpansionChanged,
+              //trailing: Image(image: AssetImage('assets/icons/expand_arrow_more.png')),
+              title: Container(
+                //padding: EdgeInsets.all(2.0),
+                child: Text(
+                  widget.dish.name, 
+                  style: TextStyle(fontSize: 18.0, color: Colors.white)
+              )),
+              children: <Widget>[
+                Column(
+                  children: _buildExpandableContent(widget.dish),
+                ),
+              ],
+            ),
+            _AllergenIconBar(widget.dish.allergies)
+          ],
+      ))
     );
   }
 

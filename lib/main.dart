@@ -9,6 +9,7 @@ void main() {
       primaryColor: Colors.black,
       accentColor: Color.fromRGBO(255, 255, 255, 0.1),
       fontFamily: 'HKGrotesk',
+      unselectedWidgetColor: Colors.white,
     ),
     home: DirectoryScreen(),
   ));
