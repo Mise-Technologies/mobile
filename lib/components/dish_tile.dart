@@ -51,7 +51,7 @@ class _DishTileState extends State<DishTile> {
         color: Color.fromRGBO(255, 255, 255, 0.05),
         padding: EdgeInsets.symmetric(vertical: 0.0),
         child: ListTile(
-          title: Text(dish.description, style: TextStyle(
+          title: Text(dish.tableTalk, style: TextStyle(
             fontSize: 18.0, 
             color: Colors.white.withOpacity(0.7), 
             fontStyle: FontStyle.italic

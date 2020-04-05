@@ -37,7 +37,7 @@ with open('bacari-menu.csv') as csv_file:
         all_allergens[a].append(row[1])
 
     # adding dish to category
-    all_dishes[row[0]].append((row[1], row[2], row[3], as_))
+    all_dishes[row[0]].append((row[1], row[2], row[3], as_, row[12]))
 
     # if not row[6] == 'X':
     #   all_allergens["Gluten-Free Possible"].append(row[1])
@@ -46,7 +46,6 @@ with open('bacari-menu.csv') as csv_file:
     #   all_allergens["Vegan Possible"].append(row[1])
 
 f = open(os.path.dirname(__file__) + '../lib/data.dart', 'w')
-
 f.write("import 'package:moPass/models/dish.dart';\n")
 f.write("\n")
 f.write("const MENU_CATEGORIES = [\n")
@@ -71,7 +70,8 @@ for key in all_dishes:
       for a in dish[3]:
         f.write("      '{}',\n".format(a))
       f.write("    ")
-    f.write("],\n  ),\n")
+    f.write("],\n   '{}',\n".format(escape_character(dish[4])))
+    f.write("  ),\n")
     
 
 f.write("};\n")
