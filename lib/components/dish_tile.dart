@@ -73,12 +73,40 @@ class _AllergenIconBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Image> allergenIcons = [];
+   // List<Tooltip> allergenIcons = [];
+   List<GestureDetector> allergenIcons = [];
     for (String allergen in _allergens) {
       String pref = 'assets/icons/allergens/';
       String path = pref + allergen + '.png';
-      allergenIcons.add(Image(image: AssetImage(path)));
+      /*
+      allergenIcons.add(
+        Tooltip(
+          message: allergen,
+          child: Image(image: AssetImage(path),
+      )));
+      */
+      allergenIcons.add(
+        GestureDetector(
+          onTap: (){
+            showDialog(
+              barrierDismissible: true,
+              context: context,
+              builder: (BuildContext context){
+                return AlertDialog(
+                  backgroundColor: Color.fromRGBO(57, 57, 57, 1),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                  title: Text("Contains: ", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 22.0)),
+                  content: Text(allergen, style: TextStyle(color: Colors.white, fontSize: 18.0)),
+
+                );
+              }
+            );
+          },
+          child: Image(image: AssetImage(path)),
+
+      ));
     }
+
     return Container(
       decoration: BoxDecoration(border: Border(top: BorderSide(
         color: Color.fromRGBO(255, 255, 255, 0.1),
