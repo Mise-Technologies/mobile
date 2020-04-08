@@ -2,40 +2,47 @@ import 'package:flutter/material.dart';
 
 class MenuButton extends StatelessWidget {
 
-  final text;
-  var textAlign = TextAlign.left;
-  final void Function() onPressed;
-  
+  static const double kDefaultHeight = 64.0;
 
-  MenuButton({this.text, this.textAlign, this.onPressed});
+  final String text;
+  final Alignment align;
+  final void Function() onPressed;
+  final double height;
+  final double width;
+  final Widget overlay;
+
+  MenuButton({
+    this.text = "", 
+    this.align = Alignment.centerLeft, 
+    @required this.onPressed,
+    this.height = MenuButton.kDefaultHeight,
+    this.width,
+    this.overlay
+  });
 
   @override
   Widget build(BuildContext context) {
     // Maybe it should be just SizedBox?
     return SizedBox(
-      height: 65.0,
-      child: RaisedButton(
-        shape: RoundedRectangleBorder(
-           borderRadius: new BorderRadius.circular(10.0),
-        ),
+      height: this.height,
+      width: this.width,
+      child: RaisedButton(onPressed: this.onPressed,
+        padding: EdgeInsets.all(0.0),
         color: Theme.of(context).accentColor,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center, // Center the Widgets.
-          mainAxisSize: MainAxisSize.max, //Use all width in raised button
-          children: <Widget>[
-            Expanded( //prevents overflow
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 24.0),
-                child: Text(
-                  this.text, 
-                  style: TextStyle(fontSize: 18.0, color: Colors.white),
-                  textAlign: this.textAlign,
-                )
-              )
-            )
-          ]
+        shape: RoundedRectangleBorder(
+          borderRadius: new BorderRadius.circular(10.0),
         ),
-        onPressed: this.onPressed
+        child: Stack(children: [
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 20.0),
+            alignment: this.align,
+            child: Text(
+              this.text, 
+              style: TextStyle(fontSize: 18.0, color: Colors.white),
+            )
+          ),
+          this.overlay,
+        ]),
       )
       
     );

@@ -1,103 +1,204 @@
 import 'package:flutter/material.dart';
-import 'package:reorderables/reorderables.dart';
+import 'package:moPass/components/menu_button.dart';
+import 'package:ordered_set/ordered_set.dart';
+import 'package:provider/provider.dart';
 
-class TablesScreen extends StatefulWidget {
+class TableScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider<_EditingMode>(
+      builder: (_) => _EditingMode(),
+      child: _TablesScreen(),
+    );
+  }
+}
+
+class _TablesScreen extends StatefulWidget {
 
   @override
   _TablesScreenState createState() => _TablesScreenState();
 }
 
-class _TablesScreenState extends State<TablesScreen> {
+class _TablesScreenState extends State<_TablesScreen> with SingleTickerProviderStateMixin {
 
-  final double _iconSize = 90;
-  List<Widget> _tiles;
+  static const double _kCrossAxisSpacing = 15.0;
+  static const double _kHorizontalPadding = 20.0;
+  static const double _kMainAxisSpacing = 20.0;
+
+  AnimationController _controller;
+  List<String> myTables = [];
+  OrderedSet<String> allTables = OrderedSet((a, b) {
+    return int.tryParse(a) - int.tryParse(b);
+  });
+
+  void Function() _onPressedNormal(String id) {
+    return () => print("Navigating to table " + id);
+  }
+
+  void Function() _onPressedEditing(String id) {
+    return () {
+      bool isMyTable = true;
+      var tableIt = myTables.where((t) => t == id);
+      if (tableIt.isEmpty) {
+        isMyTable = false;
+        tableIt = allTables.where((t) => t == id);
+      }
+      final table = tableIt.single;
+      setState(() {
+        if (isMyTable) {
+          myTables.remove(table);
+          allTables.add(table);        
+        } else {
+          allTables.remove(table);
+          myTables.add(table);
+        }
+      });
+    };
+  }
 
   @override
   void initState() {
     super.initState();
-    _tiles = <Widget>[
-      Icon(Icons.filter_1, size: _iconSize),
-      Icon(Icons.filter_2, size: _iconSize),
-      Icon(Icons.filter_3, size: _iconSize),
-      Icon(Icons.filter_4, size: _iconSize),
-      Icon(Icons.filter_5, size: _iconSize),
-      Icon(Icons.filter_6, size: _iconSize),
-      Icon(Icons.filter_7, size: _iconSize),
-      Icon(Icons.filter_8, size: _iconSize),
-      Icon(Icons.filter_9, size: _iconSize),
-    ];
+    _controller = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 500),
+    );
+    _controller.forward();
+
+    myTables = ["12", "3", "9"];
+    var all = ["1", "2", "4", "5", "6", '7', '8', '10', '11'].toSet();
+    allTables.addAll(all);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    void _onReorder(int oldIndex, int newIndex) {
-      setState(() {
-        Widget row = _tiles.removeAt(oldIndex);
-        _tiles.insert(newIndex, row);
-      });
-    }
-
-    var wrap = ReorderableWrap(
-      spacing: 8.0,
-      runSpacing: 4.0,
-      padding: const EdgeInsets.all(8),
-      children: _tiles,
-      onReorder: _onReorder,
-       onNoReorder: (int index) {
-        //this callback is optional
-        debugPrint('${DateTime.now().toString().substring(5, 22)} reorder cancelled. index:$index');
-      },
-      onReorderStarted: (int index) {
-        //this callback is optional
-        debugPrint('${DateTime.now().toString().substring(5, 22)} reorder started: index:$index');
-      }
-    );
-
-    var column = Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        wrap,
-        ButtonBar(
-          alignment: MainAxisAlignment.start,
-          children: <Widget>[
-            IconButton(
-              iconSize: 50,
-              icon: Icon(Icons.add_circle),
-              color: Colors.deepOrange,
-              padding: const EdgeInsets.all(0.0),
-              onPressed: () {
-                var newTile = Icon(Icons.filter_9_plus, size: _iconSize);
-                setState(() {
-                  _tiles.add(newTile);
-                });
-              },
-            ),
-            IconButton(
-              iconSize: 50,
-              icon: Icon(Icons.remove_circle),
-              color: Colors.teal,
-              padding: const EdgeInsets.all(0.0),
-              onPressed: () {
-                setState(() {
-                  _tiles.removeAt(0);
-                });
-              },
-            ),
-          ],
-        ),
-      ],
-    );
-
+    final _EditingMode mode = Provider.of<_EditingMode>(context);
+    final size = MediaQuery.of(context).size;
+    final tileWidth = (size.width - _kCrossAxisSpacing - _kHorizontalPadding * 2) / 2;
+    final ratio = tileWidth / MenuButton.kDefaultHeight;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Theme.of(context).accentColor,
         leading: IconButton(
           icon: Icon(Icons.exit_to_app), 
           onPressed: () {},
         ),
       ),
-      backgroundColor: Theme.of(context).accentColor,
-      body: column
+      backgroundColor: Theme.of(context).primaryColor,
+      body: Container(
+        padding: EdgeInsets.symmetric(horizontal: _kHorizontalPadding),
+        child: ListView(
+          children: <Widget>[
+            Text("Welcome, Alex",
+              style: TextStyle(fontSize: 36.0, color: Color.fromRGBO(190, 190, 190, 1)),  
+            ),
+            Row(
+              children: <Widget>[
+                Text("Your Tables", style: TextStyle(color: Colors.white)),
+                FlatButton(
+                  onPressed: () => mode.isEditing = !mode.isEditing, 
+                  child: Text(mode.isEditing? "Save": "Edit",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                )
+              ],
+            ),
+            GridView.count(
+              crossAxisCount: 2,
+              crossAxisSpacing: _kCrossAxisSpacing,
+              mainAxisSpacing: _kMainAxisSpacing,
+              childAspectRatio: ratio,
+              children: myTables.map<_TableTile>((String id) =>
+                _TableTile(id: id,
+                  isMyTable: true,
+                  onPressedEditing: _onPressedEditing(id),
+                  onPressedNormal: _onPressedNormal(id),
+                )
+              ).toList(),
+              shrinkWrap: true,
+              primary: false,
+              addAutomaticKeepAlives: true,
+            ),
+            Text("All Tables", style: TextStyle(color: Colors.white),),
+            GridView.count(
+              crossAxisCount: 2,
+              crossAxisSpacing: _kCrossAxisSpacing,
+              mainAxisSpacing: _kMainAxisSpacing,
+              childAspectRatio: ratio,
+              children: allTables.map<_TableTile>((String id) =>
+                _TableTile(id: id,
+                  isMyTable: false,
+                  onPressedEditing: _onPressedEditing(id),
+                  onPressedNormal: _onPressedNormal(id),
+                )
+              ).toList(),
+              shrinkWrap: true,
+              primary: false,
+              addAutomaticKeepAlives: true,
+            )
+          ],
+        ),
+      )
     );
   }
 
+}
+
+class _TableTile extends StatelessWidget {
+
+  final String id;
+  final bool isMyTable;
+  final void Function() onPressedNormal;
+  final void Function() onPressedEditing;
+
+  _TableTile({
+    @required this.id,
+    @required this.onPressedNormal,
+    @required this.onPressedEditing,
+    @required this.isMyTable,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final _EditingMode mode = Provider.of<_EditingMode>(context);
+    IconData icon;
+    Color color;
+    if (this.isMyTable) {
+      icon = Icons.remove_circle;
+      color = Color.fromRGBO(188, 75, 75, 1);
+    } else {
+      icon = Icons.add_circle;
+      color = Color.fromRGBO(113, 175, 64, 1);
+    }
+
+    return MenuButton(
+      align: Alignment.center,
+      text: this.id,
+      onPressed: mode.isEditing? this.onPressedEditing: this.onPressedNormal,
+      overlay: Visibility(visible: mode.isEditing,
+        child: Container(
+          alignment: Alignment.centerLeft,
+          child: Icon(icon, color: color),
+          padding: EdgeInsets.only(left: 12.0),
+        ),
+      ),
+    );
+  }
+}
+
+class _EditingMode extends ChangeNotifier {
+  bool _isEditing = false;
+
+  bool get isEditing => _isEditing;
+
+  set isEditing(bool editing) {
+    _isEditing = editing;
+    notifyListeners();
+  }
 }

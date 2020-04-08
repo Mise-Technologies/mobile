@@ -7,9 +7,9 @@ void main() {
     theme: ThemeData(
       scaffoldBackgroundColor: Colors.black,
       primaryColor: Colors.black,
-      accentColor: Color.fromRGBO(255, 255, 255, 0.1),
+      accentColor: Color.fromRGBO(25, 25, 25, 1),
       fontFamily: 'HKGrotesk',
     ),
-    home: TablesScreen(),
+    home: TableScreen(),
   ));
 }
