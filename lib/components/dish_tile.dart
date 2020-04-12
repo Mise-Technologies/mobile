@@ -73,8 +73,8 @@ class _AllergenIconBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   // List<Tooltip> allergenIcons = [];
-   List<GestureDetector> allergenIcons = [];
+    //List<Tooltip> allergenIcons = [];
+    List<GestureDetector> allergenIcons = [];
     for (String allergen in _allergens) {
       String pref = 'assets/icons/allergens/';
       String path = pref + allergen + '.png';
@@ -115,6 +115,7 @@ class _AllergenIconBar extends StatelessWidget {
           child: Image(image: AssetImage(path)),
 
       ));
+      
     }
 
     return Container(

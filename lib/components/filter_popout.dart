@@ -46,6 +46,8 @@ class _FilterPopoutState extends State<FilterPopout> {
         dense: true,
       ));
     }).toList();
+
+   
     return new Scaffold(
       body: Container(
         color: Colors.grey[800], 
@@ -58,17 +60,35 @@ class _FilterPopoutState extends State<FilterPopout> {
            )
            ), 
            Padding(
-            padding: const EdgeInsets.only(bottom: 40.0),
-             child: SizedBox(
-              height: 49.0,
+            padding: const EdgeInsets.only(bottom: 38.0),
+            child: SizedBox(
+              height: 47.0,
               width: 234.0,
               child: RaisedButton( //Check when allergens need scrolling
                 color: hiddenCount == 0? Color.fromRGBO(111, 111, 111, 1): Color.fromRGBO(180, 180, 180, 1),
                 shape: RoundedRectangleBorder(
                   borderRadius: new BorderRadius.circular(10.0),
                 ),
-                onPressed: () {
-                  Navigator.pop(context);
+                onPressed: (){
+                  if(hiddenCount > 0){
+                    Navigator.pop(context);
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context){
+                        Future.delayed(Duration(seconds: 1), () {
+                          Navigator.of(context).pop(true);
+                        });
+                        return AlertDialog(
+                          backgroundColor: Color.fromRGBO(57, 57, 57, 1),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                          content: Container(
+                            margin: EdgeInsets.only(left: 30.0, top: 8.0),
+                            child: Text(hiddenCount < 2 ? '1 Filter Applied': '$hiddenCount Filters Applied',
+                              style: TextStyle(color: Colors.white, fontSize: 22.0)),       
+                        ));
+                      }
+                    );
+                  }
                 },
                 child: Text(hiddenCount > 0? 'Apply Filter ($hiddenCount)': 'Apply Filter', 
                   style: TextStyle(fontSize: 16.0, 
