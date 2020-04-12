@@ -37,7 +37,7 @@ class _DishTileState extends State<DishTile> {
               ),
             ],
           ),
-          _AllergenIconBar(widget.dish.allergies)
+          _AllergenIconBar(widget.dish.allergens)
         ],
       )
     );

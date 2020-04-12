@@ -1,7 +1,7 @@
 class Dish {
   final String name;
   final String description;
-  final List<String> allergies;
+  final List<String> allergens;
 
-  const Dish(this.name, this.description, this.allergies);
+  const Dish(this.name, this.description, this.allergens);
 }
