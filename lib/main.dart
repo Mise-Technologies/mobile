@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moPass/screens/tables_screen.dart';
+import 'package:moPass/screens/login.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -10,6 +10,6 @@ void main() {
       accentColor: Color.fromRGBO(25, 25, 25, 1),
       fontFamily: 'HKGrotesk',
     ),
-    home: TableScreen(),
+    home: LoginScreen(),
   ));
 }

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:moPass/components/directory_app_bar.dart';
 import 'package:moPass/components/menu_button.dart';
-import 'package:moPass/data.dart';
+import 'package:moPass/screens/menuitem_screen.dart';
+import 'package:moPass/screens/tables_screen.dart';
 
 class DirectoryScreen extends StatelessWidget {
 
@@ -11,16 +12,52 @@ class DirectoryScreen extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(168.0),
         child: DirectoryAppBar(),
-        ),
+      ),
       body: Container(
-        margin: const EdgeInsets.only(right: 25.0, left:25.0),
         child: ListView(
-          children: List<Widget>.generate(MENU_CATEGORIES.length, (int index) {
-            return Container(
-              margin: EdgeInsets.only(bottom: 20.0),
-              child: MenuButton());
-          })
-      ))
+          padding: EdgeInsets.symmetric(horizontal: 25.0),
+          children: [
+            _DirectoryItemButton(text: 'Filter by Allergen / Diet',
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MenuItemScreen('Cold'))
+              )
+            ),
+            _DirectoryItemButton(text: 'Manage Tables',
+              onPressed: () => Navigator.push(
+                context, 
+                MaterialPageRoute(builder: (context) => TableScreen())
+              ),
+            ),
+          ]
+        )
+      )
+    );
+  }
+}
+
+class _DirectoryItemButton extends StatelessWidget {
+
+  final text;
+  final void Function() onPressed;
+
+  _DirectoryItemButton({
+    this.text,
+    @required this.onPressed
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 10.0), 
+      child: MenuButton(
+        text: text, 
+        onPressed: onPressed,
+        overlay: Container(
+          alignment: Alignment.centerRight,
+          child: Image(image: AssetImage('assets/icons/arrow_right.png'))
+        ),
+      )
     );
   }
 }

@@ -8,18 +8,18 @@ class TableScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<_EditingMode>(
       builder: (_) => _EditingMode(),
-      child: _TablesScreen(),
+      child: _TableScreen(),
     );
   }
 }
 
-class _TablesScreen extends StatefulWidget {
+class _TableScreen extends StatefulWidget {
 
   @override
-  _TablesScreenState createState() => _TablesScreenState();
+  _TableScreenState createState() => _TableScreenState();
 }
 
-class _TablesScreenState extends State<_TablesScreen> with SingleTickerProviderStateMixin {
+class _TableScreenState extends State<_TableScreen> with SingleTickerProviderStateMixin {
 
   static const double _kCrossAxisSpacing = 15.0;
   static const double _kHorizontalPadding = 20.0;
@@ -86,8 +86,8 @@ class _TablesScreenState extends State<_TablesScreen> with SingleTickerProviderS
       appBar: AppBar(
         backgroundColor: Theme.of(context).accentColor,
         leading: IconButton(
-          icon: Icon(Icons.exit_to_app), 
-          onPressed: () {},
+          icon: Image(image: AssetImage('assets/icons/arrow_left.png')),
+          onPressed: () => Navigator.of(context).pop(),
         ),
       ),
       backgroundColor: Theme.of(context).primaryColor,

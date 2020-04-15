@@ -22,29 +22,32 @@ class MenuButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Maybe it should be just SizedBox?
+    
+    List<Widget> content = [
+      Container(
+        padding: EdgeInsets.symmetric(horizontal: 20.0),
+        alignment: this.align,
+        child: Text(
+          this.text, 
+          style: TextStyle(fontSize: 18.0, color: Colors.white),
+        )
+      )
+    ];
+    if (this.overlay != null) {
+      content.add(this.overlay);
+    }
+
     return SizedBox(
       height: this.height,
       width: this.width,
       child: RaisedButton(onPressed: this.onPressed,
-        padding: EdgeInsets.all(0.0),
+        padding: EdgeInsets.zero,
         color: Theme.of(context).accentColor,
         shape: RoundedRectangleBorder(
           borderRadius: new BorderRadius.circular(10.0),
         ),
-        child: Stack(children: [
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 20.0),
-            alignment: this.align,
-            child: Text(
-              this.text, 
-              style: TextStyle(fontSize: 18.0, color: Colors.white),
-            )
-          ),
-          this.overlay,
-        ]),
+        child: Stack(children: content),
       )
-      
     );
   }
   
