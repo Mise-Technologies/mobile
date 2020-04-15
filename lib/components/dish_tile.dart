@@ -73,22 +73,17 @@ class _AllergenIconBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //List<Tooltip> allergenIcons = [];
-    List<GestureDetector> allergenIcons = [];
+    //List<GestureDetector> allergenIcons = [];
+    List<Image> allergenIcons = [];
     for (String allergen in _allergens) {
       String pref = 'assets/icons/allergens/';
       String path = pref + allergen + '.png';
-      /*
-      allergenIcons.add(
-        Tooltip(
-          message: allergen,
-          child: Image(image: AssetImage(path),
-      )));
-      */
-      allergenIcons.add(
-        GestureDetector(
-          onTap: (){
-            showDialog(
+      allergenIcons.add(Image(image: AssetImage(path), width: 32.0,height:32.0));
+    }
+    
+    return GestureDetector(
+      onTap:(){
+         showDialog(
               barrierDismissible: true,
               context: context,
               builder: (BuildContext context){
@@ -96,43 +91,46 @@ class _AllergenIconBar extends StatelessWidget {
                   backgroundColor: Color.fromRGBO(57, 57, 57, 1),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                   title: Text("Contains: ", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 22.0)),
-                  content: Row(
-                    children: <Widget>[
-                      Container(
-                        margin: EdgeInsets.only(left: 10.0, right: 20.0),
-                        child: Image(image: AssetImage(path), width: 32.0,height:32.0),
-                        
-                      ),
-                      Container(
-                        child: Text(allergen, style: TextStyle(color: Colors.white, fontSize: 18.0)),
-                      ),
-                    ]
+                  content: Container(
+                    width: 200.0,
+                    height: 100.0,
+                    child: ListView(
+                      children: new List.generate(_allergens.length, (index){
+                        return Padding(
+                          padding: EdgeInsets.only(bottom: 16.0),
+                          child: Row(
+                            children: <Widget>[
+                              Padding(
+                                padding: EdgeInsets.only(right: 20.0),
+                                child: allergenIcons[index]
+                              ),
+                              Text(_allergens[index], style: TextStyle(color: Colors.white, fontSize: 18.0))
+                            ],
+                          )
+                        );
+                      })
+                    )
                   )
                 );
               }
             );
-          },
-          child: Image(image: AssetImage(path)),
-
-      ));
-      
-    }
-
-    return Container(
-      decoration: BoxDecoration(border: Border(top: BorderSide(
-        color: Color.fromRGBO(255, 255, 255, 0.1),
-        width: 1.0
-      ))),
-      child: GridView.extent(
-        crossAxisSpacing: 15.0,
-        mainAxisSpacing: 15.0,
-        padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-        shrinkWrap: true,
-        primary: false,
-        maxCrossAxisExtent: 32.0,
-        children: allergenIcons
-      )
-    );
+        
+      },
+      child: Container(
+        decoration: BoxDecoration(border: Border(top: BorderSide(
+          color: Color.fromRGBO(255, 255, 255, 0.1),
+          width: 1.0
+        ))),
+        child: GridView.extent(
+          crossAxisSpacing: 15.0,
+          mainAxisSpacing: 15.0,
+          padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+          shrinkWrap: true,
+          primary: false,
+          maxCrossAxisExtent: 32.0,
+          children: allergenIcons
+        )
+    ));
   }
 
 }
