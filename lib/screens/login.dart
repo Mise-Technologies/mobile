@@ -13,6 +13,8 @@ class _LoginScreenState extends State<LoginScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
+  String _errorMsg = '';
+
   static final double kBorderRadius = 8.0;
 
   @override
@@ -26,7 +28,6 @@ class _LoginScreenState extends State<LoginScreen> {
             margin: EdgeInsets.only(bottom: 60.0),
             padding: EdgeInsets.symmetric(horizontal: 83.0),
             child: Image(
-              
               image: AssetImage('assets/icons/nomi-white-withword.png'), 
               color: Colors.white,
             )
@@ -36,6 +37,15 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Form(
               key: _formKey,
               child: Column(children: <Widget>[
+                Container(
+                  width: double.infinity,
+                  margin: EdgeInsets.only(bottom: 5.0),
+                  padding: EdgeInsets.only(left: 4.0),
+                  child: Text(_errorMsg, style: TextStyle(
+                    color: Colors.red,
+                    fontSize: 12.0,
+                  )),
+                ),
                 Container(
                   height: 48.0,
                   child: TextFormField(
@@ -73,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       filled: true,
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(kBorderRadius)),
                     ),
-                  )
+                  ),
                 ),
                 Container(
                   margin: EdgeInsets.only(top: 16.0), 
@@ -88,14 +98,15 @@ class _LoginScreenState extends State<LoginScreen> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(kBorderRadius)
                       ),
-                      onPressed: () {
-                        FocusScope.of(context).requestFocus(FocusNode());
-                        String email = _emailController.text;
-                        String password = _passwordController.text;
-                        print('Form values: $email $password');
-                        Navigator.push(context, MaterialPageRoute(
-                          builder: (context) => DirectoryScreen()
-                        ));
+                      onPressed: () async {
+                        if (_emailController.text.isEmpty || _passwordController.text.isEmpty) {
+                          setState(() => _errorMsg = 'Username and password must not be empty');
+                        } else {
+                          Future.delayed(Duration(seconds: 2), () {
+                            print('Response');
+                            // Navigator.of(context).push(MaterialPageRoute(builder: (context) => DirectoryScreen()));
+                          });
+                        }
                       },
                     )
                   )
