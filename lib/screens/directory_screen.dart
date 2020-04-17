@@ -13,24 +13,52 @@ class DirectoryScreen extends StatelessWidget {
         preferredSize: Size.fromHeight(168.0),
         child: DirectoryAppBar(),
       ),
-      body: Container(
-        child: ListView(
-          padding: EdgeInsets.symmetric(horizontal: 25.0),
-          children: [
-            _DirectoryItemButton(text: 'Filter by Allergen / Diet',
-              onPressed: () => Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => MenuItemScreen('Cold'))
+      body: Column(
+        children: [
+          ListView(
+            shrinkWrap: true,
+            padding: EdgeInsets.symmetric(horizontal: 25.0),
+            children: [
+              _DirectoryItemButton(text: 'Filter by Allergen / Diet',
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MenuItemScreen('Cold'))
+                )
+              ),
+              _DirectoryItemButton(text: 'Manage Tables',
+                onPressed: () => Navigator.push(
+                  context, 
+                  MaterialPageRoute(builder: (context) => TableScreen())
+                ),
+              ),
+            ]
+          ),
+          Expanded(
+            child: Align(alignment: Alignment.bottomCenter,
+              child: Container(
+                padding: EdgeInsets.only(bottom: 30.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('Powered by',
+                        style: TextStyle(
+                          color: Color.fromRGBO(128, 128, 128, 1.0),
+                          fontSize: 18.0,
+                        ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(left: 8.0, bottom: 4.0),
+                      child: Image(
+                        height: 16.0,
+                        image: AssetImage('assets/icons/nomi-white-withword.png'), 
+                        color: Color.fromRGBO(128, 128, 128, 1.0),
+                      )
+                    )
+                ])
               )
             ),
-            _DirectoryItemButton(text: 'Manage Tables',
-              onPressed: () => Navigator.push(
-                context, 
-                MaterialPageRoute(builder: (context) => TableScreen())
-              ),
-            ),
-          ]
-        )
+          )
+        ]
       )
     );
   }

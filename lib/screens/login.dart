@@ -102,9 +102,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         if (_emailController.text.isEmpty || _passwordController.text.isEmpty) {
                           setState(() => _errorMsg = 'Username and password must not be empty');
                         } else {
+                          print('Wait for two seconds to go to directory screen');
                           Future.delayed(Duration(seconds: 2), () {
-                            print('Response');
-                            // Navigator.of(context).push(MaterialPageRoute(builder: (context) => DirectoryScreen()));
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => DirectoryScreen()));
                           });
                         }
                       },
