@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:moPass/components/directory_app_bar.dart';
 import 'package:moPass/components/menu_button.dart';
 import 'package:moPass/screens/menuitem_screen.dart';
 import 'package:moPass/screens/tables_screen.dart';
@@ -9,12 +8,22 @@ class DirectoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(168.0),
-        child: DirectoryAppBar(),
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.exit_to_app),
+          onPressed: () => Navigator.pop(context),
+        ),
       ),
       body: Column(
         children: [
+          Container(
+            margin: EdgeInsets.only(top: 62.0, bottom: 50.0),
+            child: Align(
+              alignment: Alignment.center,
+              child: Image(image: AssetImage('assets/images/bacari-white.png'), height: 60.0),
+              //Text('BACARI', style: new TextStyle(fontSize: 30.0, color: Colors.white))
+            )
+          ),
           ListView(
             shrinkWrap: true,
             padding: EdgeInsets.symmetric(horizontal: 25.0),

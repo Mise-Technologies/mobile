@@ -100,7 +100,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       onPressed: () async {
                         if (_emailController.text.isEmpty || _passwordController.text.isEmpty) {
-                          setState(() => _errorMsg = 'Username and password must not be empty');
+                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => DirectoryScreen()));
+                          // setState(() => _errorMsg = 'Username and password must not be empty');
                         } else {
                           print('Wait for two seconds to go to directory screen');
                           Future.delayed(Duration(seconds: 2), () {
