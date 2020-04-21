@@ -41,11 +41,7 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
-    - assets/icons/arrow_right.png
-    - assets/icons/arrow_left.png
-    - assets/icons/expand_arrow_less.png
-    - assets/icons/expand_arrow_more.png
-    - assets/icons/allergens/
+    - assets/icons/
     - assets/images/bacari-white.png
 
   fonts:

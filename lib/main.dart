@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moPass/screens/tables_screen.dart';
+import 'package:moPass/screens/login.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -18,6 +18,6 @@ class NomiApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TableScreen();
+    return LoginScreen();
   }
 }
