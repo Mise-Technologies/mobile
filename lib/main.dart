@@ -10,6 +10,14 @@ void main() {
       accentColor: Color.fromRGBO(25, 25, 25, 1),
       fontFamily: 'HKGrotesk',
     ),
-    home: TableScreen(),
+    home: NomiApp(),
   ));
+}
+
+class NomiApp extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return TableScreen();
+  }
 }

@@ -22,7 +22,7 @@ dependencies:
   path_provider:
   path:
   ordered_set:
-
+  sqflite:
   cupertino_icons: ^0.1.2
   dio: 2.1.0
   english_words: ^3.1.0
