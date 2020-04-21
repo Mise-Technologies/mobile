@@ -93,22 +93,24 @@ class _AllergenIconBar extends StatelessWidget {
                   title: Text("Contains: ", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 22.0)),
                   content: Container(
                     width: 200.0,
-                    height: 100.0,
-                    child: ListView(
-                      children: new List.generate(_allergens.length, (index){
-                        return Padding(
-                          padding: EdgeInsets.only(bottom: 16.0),
-                          child: Row(
-                            children: <Widget>[
-                              Padding(
-                                padding: EdgeInsets.only(right: 20.0),
-                                child: allergenIcons[index]
-                              ),
-                              Text(_allergens[index], style: TextStyle(color: Colors.white, fontSize: 18.0))
-                            ],
-                          )
-                        );
-                      })
+                    height: 115.0,
+                    child: Scrollbar(
+                      child: ListView(
+                        children: new List.generate(_allergens.length, (index){
+                          return Padding(
+                            padding: EdgeInsets.only(bottom: 16.0),
+                            child: Row(
+                              children: <Widget>[
+                                Padding(
+                                  padding: EdgeInsets.only(right: 20.0),
+                                  child: allergenIcons[index]
+                                ),
+                                Text(_allergens[index], style: TextStyle(color: Colors.white, fontSize: 18.0))
+                              ],
+                            )
+                          );
+                        })
+                      )
                     )
                   )
                 );
