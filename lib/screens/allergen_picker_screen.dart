@@ -1,19 +1,52 @@
 import 'package:flutter/material.dart';
 import 'package:moPass/components/menu_button.dart';
+import 'package:moPass/models/filter_data.dart';
+import 'package:provider/provider.dart';
 
 import '../data.dart';
+import 'menuitem_screen.dart';
 
 class AllergenPickerScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider<FilterData>(
+      builder: (_) => FilterData(),
+      child: _AllergenPickerScreen(),
+    );
+  }
+}
+
+class _AllergenPickerScreen extends StatefulWidget {
+  @override
+  _AllergenPickerScreenState createState() => _AllergenPickerScreenState();
+}
+
+class _AllergenPickerScreenState extends State<_AllergenPickerScreen> {
+  
   static const double _kCrossAxisSpacing = 15.0;
   static const double _kHorizontalPadding = 20.0;
   static const double _kMainAxisSpacing = 20.0;
  
+  @override
+  void dispose() {
+    super.dispose();
+  }
     
+  Function(bool) _onPressed(FilterData filterData, String filterItem) {
+    return (bool value) {
+      setState(() => filterData.setItem(filterItem, value));
+    };
+  }
+
   @override
   Widget build(BuildContext context) {
+    final FilterData filterData = Provider.of<FilterData>(context);
+    final hiddenCount = filterData.checkedItemCount;
+
     final size = MediaQuery.of(context).size;
     final tileWidth = (size.width - _kCrossAxisSpacing - _kHorizontalPadding * 2) / 2;
     final ratio = tileWidth / 60.0;
+    bool filterPressed = false; 
 
     return Scaffold(
       appBar: AppBar(
@@ -22,6 +55,15 @@ class AllergenPickerScreen extends StatelessWidget {
           icon: Image(image: AssetImage('assets/icons/arrow_left.png')),
           onPressed: () => Navigator.of(context).pop(),
         ),
+        actions: <Widget>[
+          IconButton(
+          icon: Image(image: AssetImage('assets/icons/check.png')),
+          onPressed: () {}
+              
+        ),
+        ],
+        
+        
       ),
       backgroundColor: Theme.of(context).primaryColor,
       body: Container(
@@ -58,12 +100,16 @@ class AllergenPickerScreen extends StatelessWidget {
               childAspectRatio: ratio,
               children: ALLERGENS.keys.map<_AllergenTile>((String allergen) =>
                 _AllergenTile(allergen: allergen,
+                //onPressed: _onPressed(filterData, allergen),
+                onPressed: () => setState((){ filterPressed = true; }),
+                borderSide: filterPressed ?  BorderSide(color: Colors.white):BorderSide(color: Theme.of(context).accentColor),
                 )
               ).toList(),
               shrinkWrap: true,
               primary: false,
               addAutomaticKeepAlives: true,
             ),
+            /*
             Row(
               children: <Widget>[
                  Padding(
@@ -86,6 +132,7 @@ class AllergenPickerScreen extends StatelessWidget {
                   indent: 5.0,
                   endIndent: 5.0,
             )),
+            */
           ],
         ),
       )
@@ -96,15 +143,22 @@ class AllergenPickerScreen extends StatelessWidget {
 class _AllergenTile extends StatelessWidget {
 
   final String allergen;
+  final BorderSide borderSide; 
+
+  final void Function() onPressed;
 
   _AllergenTile({
     @required this.allergen,
+    @required this.onPressed,
+    @required this.borderSide,
+   
   });
 
   @override
   Widget build(BuildContext context) {
+  
     return MenuButton(
-      onPressed: (){},
+      onPressed: this.onPressed,
       align: Alignment.center,
       overlay: Padding(
         padding: EdgeInsets.only(top:12.0, left:20.0),
@@ -117,7 +171,9 @@ class _AllergenTile extends StatelessWidget {
             Text(allergen, style: TextStyle(fontSize: 18.0, color: Colors.white))
           ],
         )
-    ));
+      ),
+      borderSide: this.borderSide,  
+    );
   }
 }
 

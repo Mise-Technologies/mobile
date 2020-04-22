@@ -58,6 +58,7 @@ class _DirectoryItemButton extends StatelessWidget {
           alignment: Alignment.centerRight,
           child: Image(image: AssetImage('assets/icons/arrow_right.png'))
         ),
+        borderSide: BorderSide(color: Theme.of(context).accentColor),
       )
     );
   }
