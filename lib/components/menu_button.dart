@@ -10,6 +10,7 @@ class MenuButton extends StatelessWidget {
   final double height;
   final double width;
   final Widget overlay;
+  final BorderSide borderSide;
 
   MenuButton({
     this.text = "", 
@@ -17,7 +18,8 @@ class MenuButton extends StatelessWidget {
     @required this.onPressed,
     this.height = MenuButton.kDefaultHeight,
     this.width,
-    this.overlay
+    this.overlay,
+    this.borderSide,
   });
 
   @override
@@ -45,7 +47,8 @@ class MenuButton extends StatelessWidget {
         color: Theme.of(context).accentColor,
         shape: RoundedRectangleBorder(
           borderRadius: new BorderRadius.circular(10.0),
-        ),
+          side: this.borderSide)
+        ,
         child: Stack(children: content),
       )
     );

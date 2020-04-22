@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:moPass/components/menu_button.dart';
-import 'package:moPass/screens/menuitem_screen.dart';
 import 'package:moPass/screens/tables_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'allergen_picker_screen.dart';
 
 class DirectoryScreen extends StatelessWidget {
 
@@ -36,7 +37,7 @@ class DirectoryScreen extends StatelessWidget {
               _DirectoryItemButton(text: 'Filter by Allergen / Diet',
                 onPressed: () => Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => MenuItemScreen('Cold'))
+                  MaterialPageRoute(builder: (context) => AllergenPickerScreen())
                 )
               ),
               _DirectoryItemButton(text: 'Manage Tables',
@@ -99,6 +100,7 @@ class _DirectoryItemButton extends StatelessWidget {
           alignment: Alignment.centerRight,
           child: Image(image: AssetImage('assets/icons/arrow_right.png'))
         ),
+        borderSide: BorderSide(color: Theme.of(context).accentColor),
       )
     );
   }

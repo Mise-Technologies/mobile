@@ -188,6 +188,7 @@ class _TableTile extends StatelessWidget {
           padding: EdgeInsets.only(left: 12.0),
         ),
       ),
+      borderSide: BorderSide(color: Theme.of(context).accentColor),
     );
   }
 }
