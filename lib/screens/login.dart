@@ -1,7 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:moPass/models/menu_data.dart';
 import 'package:moPass/screens/directory_screen.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -25,13 +27,9 @@ class _LoginScreenState extends State<LoginScreen> {
     if (token != null) {
       SharedPreferences.getInstance().then((prefs) => prefs.setString('token', token));
     }
-    Dio().get('http://localhost:3000/api/dishes').then((res) {
-      if (false) {
-        // 304 not modified
-      } else {
-        // DataStore.store.updateMenu(res.data);
-      }
-    });
+    final MenuDataProvider menu = Provider.of<MenuDataProvider>(context);
+    menu.updateWithReq(Dio().get('http://localhost:3000/api/dishes'));
+
     Navigator.of(context).push(MaterialPageRoute(
       builder: (context) => DirectoryScreen()
     ));

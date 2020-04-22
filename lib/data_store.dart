@@ -34,12 +34,13 @@ class DataStore {
   Future _onCreate(Database db, int version) async {
     await db.execute(
       '''CREATE TABLE dishes(
-          id INTEGER PRIMARY KEY AUTOINCREMENT, 
+          id INTEGER PRIMARY KEY, 
           name TEXT NOT NULL,
           description TEXT NOT NULL,
           category TEXT NOT NULL,
           talk_points TEXT NOT NULL,
-          allergens TEXT NOT NULL
+          allergens TEXT NOT NULL,
+          diet TEXT NOT NULL
         );
       '''
     );
@@ -56,11 +57,9 @@ class DataStore {
     return await db.query(table);
   }
 
-  Future<MenuData> _menu = Future(() async {
+  Future<MenuData> get menu async {
     final result = await store.queryAllRows('dishes');
     return MenuData.fromDB(result);
-  });
-
-  Future<MenuData> get menu => _menu;
+  }
 
 }

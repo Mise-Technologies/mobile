@@ -1,14 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:moPass/data.dart';
 import 'package:moPass/models/filter_data.dart';
+import 'package:moPass/models/menu_data.dart';
 import 'package:provider/provider.dart';
 
 class FilterPopout extends StatefulWidget {
 
+  final MenuData menu;
   final void Function() onCloseListener;
 
-  FilterPopout(this.onCloseListener);
+  FilterPopout(this.menu, {
+    this.onCloseListener,
+  });
 
   @override
   _FilterPopoutState createState() => new _FilterPopoutState();
@@ -19,7 +22,9 @@ class _FilterPopoutState extends State<FilterPopout> {
   @override
   void dispose() {
     super.dispose();
-    widget.onCloseListener();
+    if (widget.onCloseListener != null) {
+      widget.onCloseListener();
+    }
   }
 
   Function(bool) _boxToggled(FilterData filterData, String filterItem) {
@@ -32,7 +37,7 @@ class _FilterPopoutState extends State<FilterPopout> {
   Widget build(BuildContext context) {
     final filterData = Provider.of<FilterData>(context);
     final hiddenCount = filterData.checkedItemCount;
-    var list = ALLERGENS.keys.map<Widget>((String allergen) {
+    var list = widget.menu.dishesByAllergens.keys.map<Widget>((String allergen) {
       return Theme(
         data: Theme.of(context).copyWith(unselectedWidgetColor: Color.fromRGBO(255, 255, 255, 0.5)),
         child: CheckboxListTile(

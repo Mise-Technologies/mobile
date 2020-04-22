@@ -1,22 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:moPass/components/menu_button.dart';
 import 'package:moPass/models/filter_data.dart';
+import 'package:moPass/models/menu_data.dart';
 import 'package:provider/provider.dart';
-
-import '../data.dart';
 import 'menuitem_screen.dart';
 
 class AllergenPickerScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<FilterData>(
-      builder: (_) => FilterData(),
-      child: _AllergenPickerScreen(),
+    final menuProvider = Provider.of<MenuDataProvider>(context);
+    return FutureBuilder<MenuData>(future: menuProvider.menu,
+      builder: (BuildContext context, AsyncSnapshot<MenuData> snap) {
+        if (snap.hasData) {
+          return ChangeNotifierProvider<FilterData>(
+            builder: (_) => FilterData(snap.data),
+            child: _AllergenPickerScreen(snap.data),
+          );
+        } else {
+          return Scaffold(
+            body: Center(child: Text('LOADING>>>', style: TextStyle(color: Colors.white)))
+          );
+        }
+      }
     );
   }
 }
 
 class _AllergenPickerScreen extends StatefulWidget {
+
+  final MenuData menu;
+
+  _AllergenPickerScreen(this.menu);
+
   @override
   _AllergenPickerScreenState createState() => _AllergenPickerScreenState();
 }
@@ -59,7 +74,7 @@ class _AllergenPickerScreenState extends State<_AllergenPickerScreen> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => MenuItemScreen('Cold', filterData)),
+              MaterialPageRoute(builder: (context) => MenuItemScreen(filterData, widget.menu)),
             );
             if(hiddenCount > 0){
               showDialog(
@@ -116,7 +131,7 @@ class _AllergenPickerScreenState extends State<_AllergenPickerScreen> {
               crossAxisSpacing: _kCrossAxisSpacing,
               mainAxisSpacing: _kMainAxisSpacing,
               childAspectRatio: ratio,
-              children: ALLERGENS.keys.map<_AllergenTile>((String allergen) =>
+              children: widget.menu.dishesByAllergens.keys.map<_AllergenTile>((String allergen) =>
                 _AllergenTile(allergen: allergen,
                   borderSide: BorderSide(
                     color: filterData.getItem(allergen)? Colors.white: Theme.of(context).accentColor

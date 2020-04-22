@@ -1,9 +1,10 @@
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
-import 'package:moPass/data.dart';
+import 'package:moPass/models/menu_data.dart';
 
 class FilterData extends ChangeNotifier {
+  final MenuData _menu;
   Map<String, bool> _filters = HashMap<String, bool>();
   Set<String> _excludedItems = HashSet<String>();
 
@@ -18,8 +19,8 @@ class FilterData extends ChangeNotifier {
     return count;
   }
 
-  FilterData() {
-    for (String item in ALLERGENS.keys) {
+  FilterData(this._menu) {
+    for (String item in _menu.dishesByAllergens.keys) {
       _filters[item] = false;
     }
   }
@@ -43,7 +44,7 @@ class FilterData extends ChangeNotifier {
     _excludedItems.clear();
     for (String key in _filters.keys) {
       if (_filters[key]) {
-        _excludedItems.addAll(ALLERGENS[key]);
+        _excludedItems.addAll(_menu.dishesByAllergens[key].map((d) => d.name));
       }
     }
     notifyListeners();
@@ -53,7 +54,7 @@ class FilterData extends ChangeNotifier {
     _excludedItems.clear();
 
     // set all filters to false
-    for (String item in ALLERGENS.keys) {
+    for (String item in _menu.dishesByAllergens.keys) {
       setItem(item, false);
     }
     notifyListeners();
