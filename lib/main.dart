@@ -9,6 +9,7 @@ void main() {
       primaryColor: Colors.black,
       accentColor: Color.fromRGBO(25, 25, 25, 1),
       fontFamily: 'HKGrotesk',
+      unselectedWidgetColor: Colors.white,
     ),
     home: NomiApp(),
   ));
