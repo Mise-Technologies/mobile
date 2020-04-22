@@ -9,28 +9,29 @@ import 'package:moPass/models/dish.dart';
 
 class MenuItemScreen extends StatelessWidget {
   final category;
+  final FilterData filterData;
 
-  MenuItemScreen(this.category);
+  MenuItemScreen(this.category, this.filterData);
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<FilterData>(
-      builder: (_) => FilterData(),
-      child: MenuItemScreenImpl(category)
+    return ChangeNotifierProvider<FilterData>.value(
+      notifier: filterData,
+      child: _MenuItemScreen(category)
     );
   }
 }
 
-class MenuItemScreenImpl extends StatefulWidget {
+class _MenuItemScreen extends StatefulWidget {
   final category;
 
-  MenuItemScreenImpl(this.category);
+  _MenuItemScreen(this.category);
 
   @override
   _MenuItemScreenState createState() => _MenuItemScreenState();
 }
 
-class _MenuItemScreenState extends State<MenuItemScreenImpl> with SingleTickerProviderStateMixin {
+class _MenuItemScreenState extends State<_MenuItemScreen> with SingleTickerProviderStateMixin {
   TabController _controller;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 

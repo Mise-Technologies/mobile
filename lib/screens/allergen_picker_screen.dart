@@ -37,12 +37,6 @@ class _AllergenPickerScreenState extends State<_AllergenPickerScreen> {
     super.dispose();
   }
     
-  Function(bool) _onPressed(FilterData filterData, String filterItem) {
-    return (bool value) {
-      setState(() => filterData.setItem(filterItem, value));
-    };
-  }
-
   @override
   Widget build(BuildContext context) {
     final FilterData filterData = Provider.of<FilterData>(context);
@@ -51,8 +45,6 @@ class _AllergenPickerScreenState extends State<_AllergenPickerScreen> {
     final size = MediaQuery.of(context).size;
     final tileWidth = (size.width - _kCrossAxisSpacing - _kHorizontalPadding * 2) / 2;
     final ratio = tileWidth / 60.0;
-    bool filterPressed = false; 
-    BorderSide borderSide = BorderSide(color: Theme.of(context).accentColor);
 
     return Scaffold(
       appBar: AppBar(
@@ -65,11 +57,11 @@ class _AllergenPickerScreenState extends State<_AllergenPickerScreen> {
           IconButton(
           icon: Image(image: AssetImage('assets/icons/check.png')),
           onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => MenuItemScreen('Cold', filterData)),
+            );
             if(hiddenCount > 0){
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => MenuItemScreen('Cold')),
-              );
               showDialog(
                 context: context,
                 builder: (BuildContext context){
@@ -86,12 +78,7 @@ class _AllergenPickerScreenState extends State<_AllergenPickerScreen> {
                   ));
                 }
               );
-            }else{
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => MenuItemScreen('Cold')),
-              );
-            } 
+            }
           }),
         ],  
       ),
@@ -131,18 +118,12 @@ class _AllergenPickerScreenState extends State<_AllergenPickerScreen> {
               childAspectRatio: ratio,
               children: ALLERGENS.keys.map<_AllergenTile>((String allergen) =>
                 _AllergenTile(allergen: allergen,
-                  //onPressed: _onPressed(filterData, allergen),
-                  borderSide: borderSide,
+                  borderSide: BorderSide(
+                    color: filterData.getItem(allergen)? Colors.white: Theme.of(context).accentColor
+                  ),
                   onPressed: () {
-                     setState((){
-                      if(borderSide == BorderSide(color: Theme.of(context).accentColor)){
-                        borderSide = BorderSide(color: Colors.white);
-                        _onPressed(filterData, allergen);
-                      }else{
-                        borderSide = BorderSide(color: Theme.of(context).accentColor);
-                        _onPressed(filterData, allergen);
-                      }
-                    });
+                    bool selected = filterData.getItem(allergen);
+                    filterData.setItem(allergen, !selected);
                   },
                 )
               ).toList(),
