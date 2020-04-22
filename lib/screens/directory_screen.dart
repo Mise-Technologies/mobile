@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:moPass/components/menu_button.dart';
 import 'package:moPass/screens/menuitem_screen.dart';
 import 'package:moPass/screens/tables_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class DirectoryScreen extends StatelessWidget {
 
@@ -11,7 +12,11 @@ class DirectoryScreen extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(Icons.exit_to_app),
-          onPressed: () => Navigator.pop(context),
+          onPressed: () async {
+            final prefs = await SharedPreferences.getInstance();
+            prefs.setString('token', null);
+            Navigator.pop(context);
+          }
         ),
       ),
       body: Column(

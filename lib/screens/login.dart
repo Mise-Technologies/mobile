@@ -1,6 +1,8 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:moPass/screens/directory_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
 
@@ -18,6 +20,35 @@ class _LoginScreenState extends State<LoginScreen> {
   String _errorMsg = '';
   bool _loading = false;
 
+  void _login(String token) {
+    setState(() => _loading = false);
+    if (token != null) {
+      SharedPreferences.getInstance().then((prefs) => prefs.setString('token', token));
+    }
+    Dio().get('http://localhost:3000/api/dishes').then((res) {
+      if (false) {
+        // 304 not modified
+      } else {
+        // DataStore.store.updateMenu(res.data);
+      }
+    });
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) => DirectoryScreen()
+    ));
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    SharedPreferences.getInstance().then((prefs) {
+      String token = prefs.getString('token');
+      if (token != null && token.isNotEmpty) {
+        setState(() => _loading = true);
+        Future.delayed(Duration(seconds: 1), () => _login(null));
+      }
+    });
+  }
+
   void _onSubmit() async {
     if (_emailController.text == 'skip') {
       Navigator.of(context).push(MaterialPageRoute(builder: (context) => DirectoryScreen()));
@@ -26,11 +57,9 @@ class _LoginScreenState extends State<LoginScreen> {
       setState(() => _errorMsg = 'Username and password must not be empty');
     } else {
       setState(() => _loading = true);
-      print('Wait for two seconds to go to directory screen');
       Future.delayed(Duration(seconds: 1), () {
         if (_emailController.text == 'email' && _passwordController.text == 'password') {
-          setState(() => _loading = false);
-          Navigator.of(context).push(MaterialPageRoute(builder: (context) => DirectoryScreen()));
+          _login('tokenize');
         } else {
           setState(() {
             _loading = false;
@@ -77,7 +106,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
                     controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
-                    decoration: InputDecoration.collapsed(
+                    decoration: InputDecoration(
+                      contentPadding: EdgeInsets.zero,
                       hintStyle: TextStyle(
                         color: Color.fromRGBO(141, 141, 141, 1.0),
                         fontSize: 18.0,
@@ -97,7 +127,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
                     controller: _passwordController,
                     obscureText: true,
-                    decoration: InputDecoration.collapsed(
+                    decoration: InputDecoration(
+                      contentPadding: EdgeInsets.zero,
                       hintStyle: TextStyle(
                         color: Color.fromRGBO(141, 141, 141, 1.0),
                         fontSize: 18.0,

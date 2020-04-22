@@ -1,14 +1,12 @@
+import 'package:moPass/models/menu_data.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:moPass/models/dish.dart';
 
 class DataStore {
   
   static final _databaseName = "dishes.db";
   static final _databaseVersion = 1;
-
-  bool _needsRefresh = true;
 
   // make this a singleton class
   DataStore._privateConstructor();
@@ -48,39 +46,21 @@ class DataStore {
   }
   
   // Helper methods
-
-  // Inserts a row in the database where each key in the Map is a column name
-  // and the value is the column value. The return value is the id of the
-  // inserted row.
   Future<int> insert(String table, Map<String, dynamic> row) async {
     Database db = await store.database;
     return await db.insert(table, row);
   }
 
-  // All of the rows are returned as a list of maps, where each map is 
-  // a key-value list of columns.
   Future<List<Map<String, dynamic>>> queryAllRows(String table) async {
     Database db = await store.database;
     return await db.query(table);
   }
 
-  List<String> _categories;
-  List<Dish> _dishes;
-  Map<String, Dish> _dishesByCategory;
-  Map<String, Set<Dish>> _dishesByAllergens;
+  Future<MenuData> _menu = Future(() async {
+    final result = await store.queryAllRows('dishes');
+    return MenuData.fromDB(result);
+  });
 
-  void _syncWithDB() {
-
-  }
-
-  List<String> get categories {
-    if (_needsRefresh) {
-      _syncWithDB();
-    }
-    return _categories;
-  }
-
-
-
+  Future<MenuData> get menu => _menu;
 
 }

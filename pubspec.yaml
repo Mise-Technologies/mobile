@@ -21,6 +21,7 @@ dependencies:
     sdk: flutter
   path_provider:
   path:
+  shared_preferences:
   ordered_set:
   sqflite:
   cupertino_icons: ^0.1.2
@@ -42,6 +43,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/icons/
+    - assets/icons/allergens/
     - assets/images/bacari-white.png
 
   fonts:
