@@ -28,6 +28,11 @@ class _AllergenPickerScreenState extends State<_AllergenPickerScreen> {
   static const double _kMainAxisSpacing = 20.0;
  
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   void dispose() {
     super.dispose();
   }
@@ -47,6 +52,7 @@ class _AllergenPickerScreenState extends State<_AllergenPickerScreen> {
     final tileWidth = (size.width - _kCrossAxisSpacing - _kHorizontalPadding * 2) / 2;
     final ratio = tileWidth / 60.0;
     bool filterPressed = false; 
+    BorderSide borderSide = BorderSide(color: Theme.of(context).accentColor);
 
     return Scaffold(
       appBar: AppBar(
@@ -58,12 +64,36 @@ class _AllergenPickerScreenState extends State<_AllergenPickerScreen> {
         actions: <Widget>[
           IconButton(
           icon: Image(image: AssetImage('assets/icons/check.png')),
-          onPressed: () {}
-              
-        ),
-        ],
-        
-        
+          onPressed: () {
+            if(hiddenCount > 0){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MenuItemScreen('Cold')),
+              );
+              showDialog(
+                context: context,
+                builder: (BuildContext context){
+                  Future.delayed(Duration(seconds: 1), () {
+                    Navigator.of(context).pop(true);
+                  });
+                  return AlertDialog(
+                    backgroundColor: Color.fromRGBO(57, 57, 57, 1),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                    content: Container(
+                      margin: EdgeInsets.only(left: 30.0, top: 8.0),
+                      child: Text(hiddenCount < 2 ? '1 Filter Applied': '$hiddenCount Filters Applied',
+                        style: TextStyle(color: Colors.white, fontSize: 22.0)),       
+                  ));
+                }
+              );
+            }else{
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MenuItemScreen('Cold')),
+              );
+            } 
+          }),
+        ],  
       ),
       backgroundColor: Theme.of(context).primaryColor,
       body: Container(
@@ -78,7 +108,8 @@ class _AllergenPickerScreenState extends State<_AllergenPickerScreen> {
                     Text("Allergens", style: TextStyle(color: Colors.white, fontSize: 20.0, fontWeight: FontWeight.bold))
                 ),
                 FlatButton(
-                  onPressed: (){}, 
+                  onPressed: filterData.clearFilter
+                  , 
                   child: Text("Clear All",
                     style: TextStyle(color: Colors.white),
                   ),
@@ -100,9 +131,19 @@ class _AllergenPickerScreenState extends State<_AllergenPickerScreen> {
               childAspectRatio: ratio,
               children: ALLERGENS.keys.map<_AllergenTile>((String allergen) =>
                 _AllergenTile(allergen: allergen,
-                //onPressed: _onPressed(filterData, allergen),
-                onPressed: () => setState((){ filterPressed = true; }),
-                borderSide: filterPressed ?  BorderSide(color: Colors.white):BorderSide(color: Theme.of(context).accentColor),
+                  //onPressed: _onPressed(filterData, allergen),
+                  borderSide: borderSide,
+                  onPressed: () {
+                     setState((){
+                      if(borderSide == BorderSide(color: Theme.of(context).accentColor)){
+                        borderSide = BorderSide(color: Colors.white);
+                        _onPressed(filterData, allergen);
+                      }else{
+                        borderSide = BorderSide(color: Theme.of(context).accentColor);
+                        _onPressed(filterData, allergen);
+                      }
+                    });
+                  },
                 )
               ).toList(),
               shrinkWrap: true,
