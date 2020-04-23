@@ -95,12 +95,18 @@ class _TableScreenState extends State<_TableScreen> with SingleTickerProviderSta
         padding: EdgeInsets.symmetric(horizontal: _kHorizontalPadding),
         child: ListView(
           children: <Widget>[
-            Text("Welcome, Alex",
-              style: TextStyle(fontSize: 36.0, color: Color.fromRGBO(190, 190, 190, 1)),  
-            ),
+            Container(
+              margin: EdgeInsets.only(top: 45.0, bottom: 30.0),
+              child: Text("Welcome, Alex",
+                style: TextStyle(fontSize: 36.0, color: Color.fromRGBO(190, 190, 190, 1)),  
+            )),
             Row(
               children: <Widget>[
-                Text("Your Tables", style: TextStyle(color: Colors.white)),
+                Text("Your Tables", style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                )),
                 FlatButton(
                   onPressed: () => mode.isEditing = !mode.isEditing, 
                   child: Text(mode.isEditing? "Save": "Edit",
@@ -125,7 +131,14 @@ class _TableScreenState extends State<_TableScreen> with SingleTickerProviderSta
               primary: false,
               addAutomaticKeepAlives: true,
             ),
-            Text("All Tables", style: TextStyle(color: Colors.white),),
+            Container(
+              margin: EdgeInsets.only(top: 30.0, bottom: 20.0),
+              child: Text("All Tables", style: TextStyle(
+                color: Colors.white,
+                fontSize: 20.0,
+                fontWeight: FontWeight.bold,
+              ))
+            ),
             GridView.count(
               crossAxisCount: 2,
               crossAxisSpacing: _kCrossAxisSpacing,

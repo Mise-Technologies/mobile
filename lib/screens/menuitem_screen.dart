@@ -94,21 +94,17 @@ class _MenuItemScreenState extends State<_MenuItemScreen> with SingleTickerProvi
         // }
         )
       ),
-      body: Container(
-        margin: EdgeInsets.only(top: 23.0, left: 15.0, right: 15.0),
-        child: TabBarView(
-          controller: _controller,
-          children: widget.menu.categories.map<Widget>((String category) {
-            List<Dish> dishes = [];
-            print(filterData.excluded);
-            for (Dish dish in widget.menu.dishesByCategory[category]) {
-              if (!filterData.excluded.contains(dish.name)) {
-                dishes.add(dish);
-              }
+      body: TabBarView(
+        controller: _controller,
+        children: widget.menu.categories.map<Widget>((String category) {
+          List<Dish> dishes = [];
+          for (Dish dish in widget.menu.dishesByCategory[category]) {
+            if (!filterData.excluded.contains(dish.name)) {
+              dishes.add(dish);
             }
-            return MenuItemPage(dishes);  
-          }).toList(),
-        ),
+          }
+          return MenuItemPage(dishes);  
+        }).toList(),
       ),
       floatingActionButton: new Visibility(
         visible: filterData.excluded.isNotEmpty,

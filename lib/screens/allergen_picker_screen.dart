@@ -203,7 +203,7 @@ class _AllergenTile extends StatelessWidget {
           children: <Widget>[
             Padding(
               padding: EdgeInsets.only(right:10.0),
-              child: Image(image: AssetImage('assets/icons/allergens/' + allergen + '.png'), width: 36.0, height: 36.0)
+              child: Image(image: AssetImage('assets/icons/allergens/$allergen.png'), width: 36.0, height: 36.0)
             ),
             Text(allergen, style: TextStyle(fontSize: 18.0, color: Colors.white))
           ],

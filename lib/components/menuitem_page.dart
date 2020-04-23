@@ -22,21 +22,24 @@ class _MenuItemPageState extends State<MenuItemPage> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      body: ListView.builder(
-        itemCount: widget.dishes.length,
-        itemBuilder: (context, i) {
-          Dish dish = widget.dishes[i];
-          if (!_expanded.containsKey(dish)) {
-            _expanded[dish] = false;
-          }
-          return DishTile(dish,
-            initiallyExpanded: _expanded[dish],
-            onExpansionChanged: (bool expanded) => 
-              setState(() => _expanded[dish] = expanded)
-          );
-        },
-        padding: EdgeInsets.only(bottom: kFloatingActionButtonMargin + 150)
-      ),
+      body: Container(
+        padding: EdgeInsets.only(top: 23.0, left: 15.0, right: 15.0),
+        child: ListView.builder(
+          itemCount: widget.dishes.length,
+          itemBuilder: (context, i) {
+            Dish dish = widget.dishes[i];
+            if (!_expanded.containsKey(dish)) {
+              _expanded[dish] = false;
+            }
+            return DishTile(dish,
+              initiallyExpanded: _expanded[dish],
+              onExpansionChanged: (bool expanded) => 
+                setState(() => _expanded[dish] = expanded)
+            );
+          },
+          padding: EdgeInsets.only(bottom: kFloatingActionButtonMargin + 150)
+        ),
+      )
     );
   }
 }
