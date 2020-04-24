@@ -1,36 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:moPass/components/clear_button.dart';
 import 'package:moPass/components/menuitem_page.dart';
-import 'package:moPass/data.dart';
 import 'package:moPass/models/filter_data.dart';
+import 'package:moPass/models/menu_data.dart';
 import 'package:provider/provider.dart';
 import 'package:moPass/components/filter_popout.dart';
 import 'package:moPass/models/dish.dart';
 
 class MenuItemScreen extends StatelessWidget {
-  final category;
 
-  MenuItemScreen(this.category);
+  final FilterData filterData;
+  final MenuData menu;
+
+  MenuItemScreen(this.filterData, this.menu);
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<FilterData>(
-      builder: (_) => FilterData(),
-      child: MenuItemScreenImpl(category)
+    return ChangeNotifierProvider<FilterData>.value(
+      notifier: filterData,
+      child: _MenuItemScreen(menu)
     );
+
   }
 }
 
-class MenuItemScreenImpl extends StatefulWidget {
-  final category;
+class _MenuItemScreen extends StatefulWidget {
+  final MenuData menu;
 
-  MenuItemScreenImpl(this.category);
+  _MenuItemScreen(this.menu);
 
   @override
   _MenuItemScreenState createState() => _MenuItemScreenState();
 }
 
-class _MenuItemScreenState extends State<MenuItemScreenImpl> with SingleTickerProviderStateMixin {
+class _MenuItemScreenState extends State<_MenuItemScreen> with SingleTickerProviderStateMixin {
   TabController _controller;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -39,8 +42,8 @@ class _MenuItemScreenState extends State<MenuItemScreenImpl> with SingleTickerPr
     super.initState();
     _controller = TabController(
       vsync: this, 
-      length: MENU_CATEGORIES.length,
-      initialIndex: MENU_CATEGORIES.indexOf(widget.category)
+      length: widget.menu.categories.length,
+      initialIndex: 0
     );
   }
 
@@ -76,32 +79,32 @@ class _MenuItemScreenState extends State<MenuItemScreenImpl> with SingleTickerPr
           controller: _controller,
           isScrollable: true,
           indicator: UnderlineTabIndicator(),
-          tabs: MENU_CATEGORIES.map<Tab>(
+          tabs: widget.menu.categories.map<Tab>(
             (String category) => Tab(text: category)
           ).toList(),
         ),
       ),
-      endDrawer: Drawer(child: FilterPopout(() {
-        // WidgetsBinding.instance.addPostFrameCallback((_){
-        //   if (!_scaffoldKey.currentState.isEndDrawerOpen) {
-        //     filterData.saveFilter();
-        //   }
-        // });
-      })),
-      body: Container(
-        margin: EdgeInsets.only(top: 23.0, left: 15.0, right: 15.0),
-        child: TabBarView(
-          controller: _controller,
-          children: MENU_CATEGORIES.map<Widget>((String category) {
-            List<Dish> dishes = [];
-            for (String dish in DISHES_BY_CATEGORIES[category]) {
-              if (!filterData.excluded.contains(dish)) {
-                dishes.add(DISHES[dish]);
-              }
+      endDrawer: Drawer(child: FilterPopout(widget.menu,
+        // onCloseListener: () {
+        //   WidgetsBinding.instance.addPostFrameCallback((_){
+        //     if (!_scaffoldKey.currentState.isEndDrawerOpen) {
+        //       filterData.saveFilter();
+        //     }
+        //   });
+        // }
+        )
+      ),
+      body: TabBarView(
+        controller: _controller,
+        children: widget.menu.categories.map<Widget>((String category) {
+          List<Dish> dishes = [];
+          for (Dish dish in widget.menu.dishesByCategory[category]) {
+            if (!filterData.excluded.contains(dish.name)) {
+              dishes.add(dish);
             }
-            return MenuItemPage(dishes);  
-          }).toList(),
-        ),
+          }
+          return MenuItemPage(dishes);  
+        }).toList(),
       ),
       floatingActionButton: new Visibility(
         visible: filterData.excluded.isNotEmpty,

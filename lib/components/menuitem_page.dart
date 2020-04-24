@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:moPass/components/dish_tile.dart';
@@ -9,32 +11,35 @@ class MenuItemPage extends StatefulWidget {
   MenuItemPage(this.dishes);
 
   @override
-  _MenuItemPageState createState() => new _MenuItemPageState(dishes.length);
+  _MenuItemPageState createState() => new _MenuItemPageState();
 }
 
 class _MenuItemPageState extends State<MenuItemPage> {
 
-  List<bool> _expanded;
-
-  _MenuItemPageState(int length) {
-    _expanded = List.filled(length, false);
-  }
+  Map<Dish, bool> _expanded = HashMap();
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
-      body: ListView.builder(
-        itemCount: widget.dishes.length,
-        itemBuilder: (context, i) {
-          return DishTile(
-            widget.dishes[i],
-            initiallyExpanded: _expanded[i],
-            onExpansionChanged: (bool expanded) => 
-              setState(() => _expanded[i] = expanded)
-          );
-        },
-        padding: EdgeInsets.only(bottom: kFloatingActionButtonMargin + 150)
-      ),
+      body: Container(
+        padding: EdgeInsets.only(top: 23.0, left: 15.0, right: 15.0),
+        child: ListView.builder(
+          itemCount: widget.dishes.length,
+          itemBuilder: (context, i) {
+            Dish dish = widget.dishes[i];
+            if (!_expanded.containsKey(dish)) {
+              _expanded[dish] = false;
+            }
+            return DishTile(dish,
+              initiallyExpanded: _expanded[dish],
+              onExpansionChanged: (bool expanded) => 
+                setState(() => _expanded[dish] = expanded)
+            );
+          },
+          padding: EdgeInsets.only(bottom: kFloatingActionButtonMargin + 150)
+        ),
+      )
     );
   }
 }
