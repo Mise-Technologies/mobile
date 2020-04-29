@@ -27,7 +27,7 @@ class _LoginScreenState extends State<LoginScreen> {
     if (token != null) {
       SharedPreferences.getInstance().then((prefs) => prefs.setString('token', token));
     }
-    final MenuDataProvider menu = Provider.of<MenuDataProvider>(context);
+    final MenuDataWrapper menu = Provider.of<MenuDataWrapper>(context);
     menu.updateWithReq(Dio().get('http://localhost:3000/api/dishes'));
 
     Navigator.of(context).push(MaterialPageRoute(

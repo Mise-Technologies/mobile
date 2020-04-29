@@ -57,10 +57,10 @@ class MenuData {
   Map<String, Set<Dish>> get dishesByAllergens => _dishesByAllergens;
 }
 
-class MenuDataProvider extends ChangeNotifier {
+class MenuDataWrapper extends ChangeNotifier {
   Future<MenuData> menu;
 
-  MenuDataProvider(this.menu);
+  MenuDataWrapper(this.menu);
 
   void updateWithReq(Future<Response> response) {
     menu = Future(() async {
