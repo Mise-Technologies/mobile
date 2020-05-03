@@ -1,10 +1,12 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:moPass/dio_wrapper.dart';
 import 'package:moPass/models/menu_data.dart';
 import 'package:moPass/screens/directory_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../app_config.dart';
 
 class LoginScreen extends StatefulWidget {
 
@@ -22,49 +24,58 @@ class _LoginScreenState extends State<LoginScreen> {
   String _errorMsg = '';
   bool _loading = false;
 
-  void _login(String token) {
-    setState(() => _loading = false);
-    if (token != null) {
-      SharedPreferences.getInstance().then((prefs) => prefs.setString('token', token));
-    }
-    final MenuDataWrapper menu = Provider.of<MenuDataWrapper>(context);
-    menu.updateWithReq(Dio().get('http://localhost:3000/api/dishes'));
+  void _login(String email, String password) {
+    setState(() => _loading = true);
+    final baseUrl = AppConfig.of(context).apiBaseUrl;
+    DioWrapper.dio.post('$baseUrl/user/login', 
+      data: {
+        'email': email,
+        'password': password,
+      }
+    ).then((res) {
+      DioWrapper.token = res.data['token'];
+      SharedPreferences.getInstance().then((prefs) {
+        prefs.setString('email', email);
+        prefs.setString('password', password);
+      });
+      final MenuDataWrapper menu = Provider.of<MenuDataWrapper>(context);
+      menu.updateWithReq(DioWrapper.dio.get('$baseUrl/dishes'));
 
-    Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => DirectoryScreen()
-    ));
+      setState(() => _loading = false);
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) => DirectoryScreen()));
+    }).catchError((err) {
+      setState(() {
+        _loading = false;
+        try {
+          _errorMsg = err.response.data['msg'];
+        } catch (e) {
+          print(e);
+          _errorMsg = 'An unexpected error occurred';
+        }
+      });
+    });
   }
 
   @override
   void initState() {
     super.initState();
     SharedPreferences.getInstance().then((prefs) {
-      String token = prefs.getString('token');
-      if (token != null && token.isNotEmpty) {
-        setState(() => _loading = true);
-        Future.delayed(Duration(seconds: 1), () => _login(null));
+      String email = prefs.getString('email');
+      String password = prefs.getString('password');
+      if (email != null && password != null) {
+        _login(email, password);
       }
     });
   }
 
-  void _onSubmit() async {
+  void _onSubmit() {
     if (_emailController.text == 'skip') {
       Navigator.of(context).push(MaterialPageRoute(builder: (context) => DirectoryScreen()));
     }
     if (_emailController.text.isEmpty || _passwordController.text.isEmpty) {
       setState(() => _errorMsg = 'Username and password must not be empty');
     } else {
-      setState(() => _loading = true);
-      Future.delayed(Duration(seconds: 1), () {
-        if (_emailController.text == 'email' && _passwordController.text == 'password') {
-          _login('tokenize');
-        } else {
-          setState(() {
-            _loading = false;
-            _errorMsg = 'Incorrect username & password combo';
-          });
-        }
-      });
+      _login(_emailController.text, _passwordController.text);
     }
   }
 

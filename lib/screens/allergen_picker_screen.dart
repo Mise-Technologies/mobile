@@ -12,7 +12,19 @@ class AllergenPickerScreen extends StatelessWidget {
     final menuProvider = Provider.of<MenuDataWrapper>(context);
     return FutureBuilder<MenuData>(future: menuProvider.menu,
       builder: (BuildContext context, AsyncSnapshot<MenuData> snap) {
-        if (snap.hasData) {
+        if (snap.hasError) {
+          return Scaffold(
+            appBar: AppBar(
+              leading: IconButton(
+                icon: Image(image: AssetImage('assets/icons/arrow_left.png')),
+                onPressed: () => Navigator.of(context).pop(),
+              ),
+            ),
+            body: Center(child: Text('ERROR!!!', 
+              style: TextStyle(color: Colors.white)
+            ))
+          );
+        } else if (snap.hasData) {
           return FilterDataProvider(
             data: snap.data,
             child: _AllergenPickerScreen(snap.data),
@@ -25,7 +37,9 @@ class AllergenPickerScreen extends StatelessWidget {
                 onPressed: () => Navigator.of(context).pop(),
               ),
             ),
-            body: Center(child: Text('LOADING>>>', style: TextStyle(color: Colors.white)))
+            body: Center(child: Text('LOADING>>>', 
+              style: TextStyle(color: Colors.white)
+            ))
           );
         }
       }
