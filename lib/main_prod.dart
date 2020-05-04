@@ -4,7 +4,7 @@ import 'package:moPass/nomi_app.dart';
 
 void main() {
   final app = new AppConfig(
-    apiBaseUrl: "http://nomi-meni-service.herokuapp.com/api",
+    apiBaseUrl: "https://nomi-menu-service.herokuapp.com/api",
     child: NomiApp()
   );
   

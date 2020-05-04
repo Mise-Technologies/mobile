@@ -44,12 +44,16 @@ class _LoginScreenState extends State<LoginScreen> {
       setState(() => _loading = false);
       Navigator.of(context).push(MaterialPageRoute(builder: (context) => DirectoryScreen()));
     }).catchError((err) {
+      SharedPreferences.getInstance().then((prefs) {
+        prefs.setString('email', null);
+        prefs.setString('password', null);
+      });
       setState(() {
         _loading = false;
         try {
           _errorMsg = err.response.data['msg'];
         } catch (e) {
-          print(e);
+          print('Login failed unexpectedly: $err');
           _errorMsg = 'An unexpected error occurred';
         }
       });
