@@ -2,23 +2,44 @@ import 'package:flutter/material.dart';
 import 'package:moPass/components/menu_button.dart';
 import 'package:moPass/models/filter_data.dart';
 import 'package:moPass/models/menu_data.dart';
+import 'package:moPass/providers/filter_data_provider.dart';
 import 'package:provider/provider.dart';
 import 'menuitem_screen.dart';
 
 class AllergenPickerScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final menuProvider = Provider.of<MenuDataProvider>(context);
+    final menuProvider = Provider.of<MenuDataWrapper>(context);
     return FutureBuilder<MenuData>(future: menuProvider.menu,
       builder: (BuildContext context, AsyncSnapshot<MenuData> snap) {
-        if (snap.hasData) {
-          return ChangeNotifierProvider<FilterData>(
-            builder: (_) => FilterData(snap.data),
+        if (snap.hasError) {
+          return Scaffold(
+            appBar: AppBar(
+              leading: IconButton(
+                icon: Image(image: AssetImage('assets/icons/arrow_left.png')),
+                onPressed: () => Navigator.of(context).pop(),
+              ),
+            ),
+            body: Center(child: Text('ERROR!!!', 
+              style: TextStyle(color: Colors.white)
+            ))
+          );
+        } else if (snap.hasData) {
+          return FilterDataProvider(
+            data: snap.data,
             child: _AllergenPickerScreen(snap.data),
           );
         } else {
           return Scaffold(
-            body: Center(child: Text('LOADING>>>', style: TextStyle(color: Colors.white)))
+            appBar: AppBar(
+              leading: IconButton(
+                icon: Image(image: AssetImage('assets/icons/arrow_left.png')),
+                onPressed: () => Navigator.of(context).pop(),
+              ),
+            ),
+            body: Center(child: Text('LOADING>>>', 
+              style: TextStyle(color: Colors.white)
+            ))
           );
         }
       }

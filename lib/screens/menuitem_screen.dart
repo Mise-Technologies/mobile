@@ -3,6 +3,7 @@ import 'package:moPass/components/clear_button.dart';
 import 'package:moPass/components/menuitem_page.dart';
 import 'package:moPass/models/filter_data.dart';
 import 'package:moPass/models/menu_data.dart';
+import 'package:moPass/providers/filter_data_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:moPass/components/filter_popout.dart';
 import 'package:moPass/models/dish.dart';
@@ -16,7 +17,7 @@ class MenuItemScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<FilterData>.value(
+    return FilterDataProvider.value(
       notifier: filterData,
       child: _MenuItemScreen(menu)
     );

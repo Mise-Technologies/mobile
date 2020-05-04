@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:moPass/data_store.dart';
+import 'package:moPass/providers/menu_data_provider.dart';
 import 'package:moPass/screens/login.dart';
-import 'package:provider/provider.dart';
 
-import 'models/menu_data.dart';
+import 'data_store.dart';
 
-void main() {
-  runApp(
-    ChangeNotifierProvider<MenuDataProvider>(
-      builder: (_) => MenuDataProvider(DataStore.store.menu),
+class NomiApp extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    WidgetsFlutterBinding.ensureInitialized();
+    return MenuDataProvider(
+      data: DataStore.store.menu,
       child: MaterialApp(
         title: 'Nomi',
         theme: ThemeData(
@@ -20,6 +22,6 @@ void main() {
         ),
         home: LoginScreen(),
       ),
-    ),
-  );
+    );
+  }
 }

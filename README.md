@@ -4,16 +4,18 @@
 lib
 ├── components            // Smaller widgets (blocks etc.)
 ├── models                // Model (as the M in MVVM and perhaps DAO related ones)
+├── providers             // providers
 └── screens               // Basic screens of the app
 ```
 
-Refer to Code Gen Stuff for additional installation instructions before exec'ing 
-```sh
-flutter run
+## Run the App
+To run the app in dev mode (which means the backend server is run locally), run
+```bash
+flutter run -t lib/main_dev.dart
 ```
 
+To run the app in production mode (which is to connect to the production server), run
+```bash
+flutter run -t lib/main_prod.dart
+```
 
-## Code Gen Stuff
-* Go to [codegen directory](codegen/)
-* Since *.csv files are git-ignored in the directory, add the menu csv file and name it "bacari-menu.csv"
-* run `python gen.py` and `/lib/data.dart` will be regenerated
