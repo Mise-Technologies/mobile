@@ -26,7 +26,7 @@ class MenuData {
         name: dishMap['name'],
         description: dishMap['description'],
         tableTalk: dishMap['tableTalkPoints'],
-        category: dishMap['category'],
+        category: dishMap['category'] == null? null: dishMap['category']['name'],
         allergens: allergens,
       );
       _dishes[dish.id] = dish;
