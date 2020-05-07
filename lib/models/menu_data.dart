@@ -84,6 +84,7 @@ class MenuDataWrapper extends ChangeNotifier {
       var res;
       try {
         res = await response;
+        _e = null;
       } catch (e) {
         _e = e;
         return this._menu;
