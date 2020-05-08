@@ -1,5 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:moPass/models/dish.dart';
+
+import 'package:moPass/app_config.dart';
 
 class DishTile extends StatefulWidget {
   final Dish dish;
@@ -73,11 +76,12 @@ class _AllergenIconBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final baseUrl = AppConfig.of(context).apiBaseUrl;
     //List<GestureDetector> allergenIcons = [];
     List<Image> allergenIcons = [];
     for (String allergen in _allergens) {
-      String path = 'assets/icons/allergens/$allergen.png';
-      allergenIcons.add(Image(image: AssetImage(path), width: 32.0,height:32.0));
+      String path = '$baseUrl/assets/tag_icons/$allergen.png';
+      allergenIcons.add(Image(image: CachedNetworkImageProvider(path), width: 32.0,height:32.0));
     }
     
     return GestureDetector(

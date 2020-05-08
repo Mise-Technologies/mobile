@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:moPass/app_config.dart';
 import 'package:moPass/components/menu_button.dart';
 import 'package:moPass/models/filter_data.dart';
 import 'package:moPass/models/menu_data.dart';
@@ -214,7 +216,7 @@ class _AllergenTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  
+    final baseUrl = AppConfig.of(context).apiBaseUrl;
     return MenuButton(
       onPressed: this.onPressed,
       align: Alignment.center,
@@ -224,7 +226,7 @@ class _AllergenTile extends StatelessWidget {
           children: <Widget>[
             Padding(
               padding: EdgeInsets.only(right:10.0),
-              child: Image(image: AssetImage('assets/icons/allergens/$allergen.png'), width: 36.0, height: 36.0)
+              child: Image(image: CachedNetworkImageProvider('$baseUrl/assets/tag_icons/$allergen.png'), width: 36.0, height: 36.0)
             ),
             Text(allergen, style: TextStyle(fontSize: 18.0, color: Colors.white))
           ],
