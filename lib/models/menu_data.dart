@@ -87,6 +87,7 @@ class MenuDataWrapper extends ChangeNotifier {
         _e = null;
       } catch (e) {
         _e = e;
+        print(e);
         return this._menu;
       }
       if (false) {
