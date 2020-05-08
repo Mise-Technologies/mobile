@@ -29,6 +29,7 @@ dependencies:
   english_words: ^3.1.0
   provider: ^2.0.0
   flappy_search_bar: 1.4.1
+  cached_network_image: 2.2.0
 
 dev_dependencies:
   flutter_test:
@@ -50,8 +51,6 @@ flutter:
   uses-material-design: true
   assets:
     - assets/icons/
-    - assets/icons/allergens/
-    - assets/images/bacari-white.png
 
   fonts:
   - family: HKGrotesk
