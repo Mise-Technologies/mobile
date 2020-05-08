@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:moPass/app_config.dart';
 import 'package:moPass/components/menu_button.dart';
 import 'package:moPass/screens/tables_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -9,6 +11,7 @@ class DirectoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final baseUrl = AppConfig.of(context).apiBaseUrl;
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -26,7 +29,7 @@ class DirectoryScreen extends StatelessWidget {
             margin: EdgeInsets.only(top: 62.0, bottom: 50.0),
             child: Align(
               alignment: Alignment.center,
-              child: Image(image: AssetImage('assets/images/bacari-white.png'), height: 60.0),
+              child: Image(image: CachedNetworkImageProvider('$baseUrl/assets/restaurant_logos/bacari-white.png'), height: 60.0),
               //Text('BACARI', style: new TextStyle(fontSize: 30.0, color: Colors.white))
             )
           ),
